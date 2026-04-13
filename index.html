@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DreamyTea | Where Every Sip is a Dream Come True</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dreamy-pink: #FFB6C1;
+            --soft-pink: #FFC0CB;
+            --deep-pink: #FF69B4;
+            --cream: #FFF5F7;
+            --warm-white: #FFFAFB;
+            --text-dark: #4A4A4A;
+            --text-light: #777;
+            --accent-gold: #FFD700;
+            --isabella-purple: #DDA0DD;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating Boba Animation Background */
+        .floating-boba {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.4));
+            border-radius: 50%;
+            animation: float 15s infinite ease-in;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 250, 251, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(255, 182, 193, 0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo::before {
+            content: "🧋";
+            font-size: 2.2rem;
+            -webkit-text-fill-color: initial;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--deep-pink);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--deep-pink);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--deep-pink), #FF1493);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-size: 1.2rem;
+            color: var(--deep-pink);
+            font-style: italic;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hero-isabella {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 40px;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50px;
+            display: inline-block;
+            border: 2px solid var(--dreamy-pink);
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            bottom: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,182,193,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            animation: pulse 3s infinite;
+            z-index: 5;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--deep-pink);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
+            border-radius: 2px;
+        }
+
+        /* Dad's Special Message Section */
+        .dad-message {
+            background: linear-gradient(135deg, #FFF8E7, var(--cream));
+            padding: 100px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--dreamy-pink);
+            border-bottom: 5px solid var(--dreamy-pink);
+        }
+
+        .dad-message::before {
+            content: '❤️';
+            position: absolute;
+            font-size: 25rem;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .dad-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .dad-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--deep-pink);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .dad-content h2::after {
+            content: '✨';
+            position: absolute;
+            right: -50px;
+            top: 0;
+            font-size: 2rem;
+        }
+
+        .dad-content h2::before {
+            content: '✨';
+            position: absolute;
+            left: -50px;
+            top: 0;
+            font-size: 2rem;
+        }
+
+        .dad-letter {
+            background: white;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.3);
+            position: relative;
+            transform: rotate(-1deg);
+            transition: transform 0.3s;
+        }
+
+        .dad-letter:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .dad-letter::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--isabella-purple), var(--dreamy-pink));
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .dad-letter p {
+            font-size: 1.3rem;
+            line-height: 2.2;
+            color: var(--text-dark);
+            font-style: italic;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--deep-pink);
+            text-align: right;
+        }
+
+        .signature::before {
+            content: 'With infinite pride, ';
+            font-size: 1.2rem;
+            color: var(--text-light);
+            display: block;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        /* Isabella Spotlight Section */
+        .isabella-spotlight {
+            background: linear-gradient(135deg, var(--warm-white), var(--cream));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .isabella-spotlight::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 20px,
+                rgba(255,182,193,0.05) 20px,
+                rgba(255,182,193,0.05) 40px
+            );
+        }
+
+        .spotlight-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .spotlight-text h2 {
+            font-size: 2.5rem;
+            color: var(--deep-pink);
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .spotlight-text .highlight-name {
+            background: linear-gradient(135deg, var(--isabella-purple), var(--deep-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .spotlight-text p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        .spotlight-image {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--isabella-purple));
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 30px 80px rgba(255, 105, 180, 0.3);
+            overflow: hidden;
+        }
+
+        .spotlight-image::after {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: slide 20s linear infinite;
+        }
+
+        .artist-badge {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 10;
+            text-align: center;
+            transform: rotate(-3deg);
+        }
+
+        .artist-badge .emoji {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .artist-badge p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-pink);
+            margin: 0;
+        }
+
+        .artist-badge span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        @keyframes slide {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* About Section */
+        .about {
+            background: var(--warm-white);
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--deep-pink);
+            font-weight: 600;
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.3);
+            overflow: hidden;
+        }
+
+        /* Menu Section */
+        .menu-section {
+            background: linear-gradient(to bottom, var(--cream), var(--warm-white));
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.2);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            border-color: var(--dreamy-pink);
+        }
+
+        .drink-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .menu-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--deep-pink);
+        }
+
+        .menu-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 25px;
+            background: var(--cream);
+            color: var(--deep-pink);
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .tag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-gold);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .isabella-creation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--isabella-purple);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .menu-card:hover .isabella-creation {
+            opacity: 1;
+        }
+
+        /* Features Section */
+        .features {
+            background: var(--warm-white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--deep-pink);
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(to bottom, var(--warm-white), var(--cream));
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        .gallery-item:nth-child(2) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Visit Section */
+        .visit {
+            background: var(--deep-pink);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visit::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .visit .section-title {
+            color: white;
+        }
+
+        .visit .section-title::after {
+            background: white;
+        }
+
+        .visit-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .visit-details {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .visit-details strong {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hours {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hours h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 60px 50px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--deep-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-tagline {
+            font-style: italic;
+            margin-bottom: 30px;
+            color: #aaa;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--dreamy-pink);
+        }
+
+        .copyright {
+            border-top: 1px solid #555;
+            padding-top: 30px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .isabella-credit {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,182,193,0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255,182,193,0.3);
+        }
+
+        .isabella-credit p {
+            color: var(--dreamy-pink);
+            font-style: italic;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero h1 { font-size: 3rem; }
+            .spotlight-content { grid-template-columns: 1fr; }
+            .about-content { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+            .hero-image { display: none; }
+            .dad-letter { padding: 40px 30px; }
+            .dad-content h2 { font-size: 2rem; }
+            .dad-content h2::before, .dad-content h2::after { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 60px 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+            .dad-letter p { font-size: 1.1rem; }
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Boba Background -->
+    <div class="floating-boba" id="bobaContainer"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">DreamyTea</a>
+        <ul class="nav-links">
+            <li><a href="#isabella">Meet Isabella</a></li>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>DreamyTea</h1>
+            <p class="hero-subtitle">Winter Garden, Orlando</p>
+            <p class="hero-tagline">"Where Every Sip is a Dream Come True"</p>
+            <div class="hero-isabella">✨ Run with love by Isabella Betz ✨</div>
+            <a href="#menu" class="cta-button">Explore Our Dreams 🧋</a>
+        </div>
+        <div class="hero-image">🧋</div>
+    </section>
+
+    <!-- Dad's Special Message -->
+    <section class="dad-message">
+        <div class="dad-content">
+            <h2>A Father's Love & Pride</h2>
+            <div class="dad-letter">
+                <p>My dearest Isabella,</p>
+                
+                <p>Watching you pour your heart, creativity, and soul into DreamyTea fills me with a pride I never knew was possible. From your beautiful hand-drawn menu illustrations to your innovative chai creations, you've transformed this shop into something truly magical.</p>
+                
+                <p>Your aunts may hold the title, but you, my daughter, are the beating heart of this dream. Your expertise from working at boba shops across town, your artistic vision that brought the menu to life, and your dedication to making every customer's experience special—these are the things that make DreamyTea shine.</p>
+                
+                <p>This website is my gift to you, a small token of my infinite love and admiration. I see how hard you work, how much you care, and how brightly you shine. You are not just running a shop; you are creating joy, one cup at a time.</p>
+                
+                <p>Keep dreaming, keep creating, and never forget how incredibly proud I am to be your dad.</p>
+                
+                <div class="signature">Dad ❤️</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Isabella Spotlight -->
+    <section class="isabella-spotlight" id="isabella">
+        <div class="spotlight-content fade-in">
+            <div class="spotlight-text">
+                <h2>Meet the Creative Force Behind the Dream:<br><span class="highlight-name">Isabella Betz</span></h2>
+                <p>While DreamyTea was founded by twin sisters Cristina Dewrell and Andrea Perlas, the shop's vibrant soul comes from their niece, <strong>Isabella Betz</strong>.</p>
+                <p>With years of experience working at boba shops across Orlando, Isabella brought invaluable expertise in what customers love and what makes a shop truly special.</p>
+                <p>She personally hand-drew every illustration on the menu, helped craft the perfect offerings, and manages the shop's social media presence. Her recent addition of chai to the menu has already become a customer favorite.</p>
+                <p>Isabella represents the next generation of the family dream—blending Filipino heritage with modern creativity, and turning every visit into an unforgettable experience.</p>
+            </div>
+            <div class="spotlight-image">
+                <div class="artist-badge">
+                    <span class="emoji">🎨</span>
+                    <p>Hand-Drawn by Isabella</p>
+                    <span>Every illustration, every detail</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title fade-in">Our Dreamy Story</h2>
+        <div class="about-content fade-in">
+            <div class="about-text">
+                <p>Founded in 2024 by twin sisters Cristina Dewrell and Andrea Perlas, <span class="highlight">DreamyTea</span> quickly became Winter Garden's most <span class="highlight">aesthetic boba destination</span>.</p>
+                <p>But what truly sets us apart is the creative genius of <span class="highlight">Isabella Betz</span>, who transformed the sisters' vision into a visual and sensory masterpiece. Her artistic touch is everywhere—from the menu boards to the Instagram-worthy drink presentations.</p>
+                <p>We're not just serving boba — we're serving <span class="highlight">dreams in a cup</span>. From our signature Pina Colada with mango boba to Isabella's innovative chai creations, every sip tells a story of family, passion, and artistic dedication.</p>
+            </div>
+            <div class="about-image">💕</div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title fade-in">Isabella's Creations</h2>
+        <div class="menu-grid">
+            <div class="menu-card fade-in">
+                <span class="tag">BESTSELLER</span>
+                <span class="drink-icon">🥥🥭</span>
+                <h3>Pina Colada Dream</h3>
+                <p>Our signature tropical escape featuring refreshing pina colada slush paired with sweet mango boba pearls. A vacation in every sip.</p>
+                <span class="price">$7.50</span>
+                <span class="isabella-creation">Isabella's Pick! ⭐</span>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <span class="drink-icon">🍓</span>
+                <h3>Cupid's Cup</h3>
+                <p>Strawberry milk blended with fresh strawberry puree. Sweet, creamy, and made with love.</p>
+                <span class="price">$6.50</span>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <span class="tag">NEW</span>
+                <span class="drink-icon">☕</span>
+                <h3>Isabella's Chai</h3>
+                <p>Recently added to the menu by Isabella herself—warm, spiced, and perfectly comforting. A new favorite born from her creativity.</p>
+                <span class="price">$6.00</span>
+                <span class="isabella-creation">Isabella's Innovation! ✨</span>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <span class="tag">SECRET MENU</span>
+                <span class="drink-icon">🍫</span>
+                <h3>Milo Dinosaur</h3>
+                <p>Chocolate milk elevated with Milo powder — a nostalgic favorite with a dreamy twist.</p>
+                <span class="price">$6.50</span>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <span class="drink-icon">🧋</span>
+                <h3>My Thai</h3>
+                <p>Authentic Thai tea with condensed milk — rich, creamy, and perfectly balanced.</p>
+                <span class="price">$6.00</span>
+            </div>
+            
+            <div class="menu-card fade-in">
+                <span class="tag">REFRESHING</span>
+                <span class="drink-icon">🌺</span>
+                <h3>Hibiscus Raspberry</h3>
+                <p>Black tea infused with hibiscus and raspberry — floral, fruity, and beautifully pink.</p>
+                <span class="price">$6.00</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title fade-in">The Dreamy Experience</h2>
+        <div class="features-grid fade-in">
+            <div class="feature-item">
+                <div class="feature-icon">🎨</div>
+                <h3>Isabella's Art</h3>
+                <p>Every menu illustration hand-drawn with love and creativity</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📸</div>
+                <h3>Aesthetic Vibes</h3>
+                <p>Instagram-worthy pink decor and dreamy ambiance</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎀</div>
+                <h3>Hello Kitty Shop</h3>
+                <p>Exclusive gift shop featuring curated merchandise</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧇</div>
+                <h3>Croffles & More</h3>
+                <p>Delicious croffles, waffle dogs, and halo halo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <h2 class="section-title fade-in">Dreamy Moments</h2>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">🧋</div>
+            <div class="gallery-item">💕</div>
+            <div class="gallery-item">🌸</div>
+            <div class="gallery-item">✨</div>
+            <div class="gallery-item">🎀</div>
+        </div>
+    </section>
+
+    <!-- Visit Section -->
+    <section class="visit" id="visit">
+        <h2 class="section-title fade-in">Visit the Dream</h2>
+        <div class="visit-content fade-in">
+            <div class="visit-details">
+                <strong>📍 Find Us</strong>
+                12623 W Colonial Dr, Ste B<br>
+                Winter Garden, FL 34787<br>
+                <strong>📞 (407) 347-0051</strong>
+            </div>
+            
+            <div class="hours">
+                <h3>🕐 Opening Hours</h3>
+                <p>Monday - Sunday<br>
+                12:00 PM - 8:00 PM<br>
+                <em>Come chase your dreams with us!</em></p>
+            </div>
+            
+            <a href="tel:4073470051" class="cta-button" style="margin-top: 40px;">Call to Order 📞</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">DreamyTea</div>
+            <p class="footer-tagline">"Arguably the best place for boba in Florida" — Our Customers</p>
+            <div class="social-links">
+                <a href="#">📸 Instagram</a>
+                <a href="#">📘 Facebook</a>
+                <a href="#">🎵 TikTok</a>
+            </div>
+            <div class="isabella-credit">
+                <p>🎨 Menu Artwork & Social Media by Isabella Betz | ☕ Chai Innovation by Isabella</p>
+            </div>
+            <div class="copyright">
+                <p>Made with 💕 by Dad for Isabella | © 2024 DreamyTea. All dreams reserved.</p>
+                <p>A Family Dream Built with Love in Winter Garden</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating boba bubbles
+        function createBubbles() {
+            const container = document.getElementById('bobaContainer');
+            const bubbleCount = 15;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(bubble);
+            }
+        }
+
+        // Intersection Observer for scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Initialize
+        window.addEventListener('load', () => {
+            createBubbles();
+            initScrollAnimations();
+        });
+
+        // Parallax effect for hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-image');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
