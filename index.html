@@ -3,32 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamyTea | Orlando's Premier Boba Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>DreamyTea | Where Every Sip is a Dream Come True</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-purple: #9B59B6;
-            --deep-purple: #8E44AD;
-            --light-purple: #D2B4DE;
-            --soft-lavender: #E8DAEF;
-            --cream: #FDF5E6;
-            --warm-white: #FFFAF0;
-            --text-dark: #2C3E50;
-            --text-medium: #5D6D7E;
-            --text-light: #85929E;
-            --accent-gold: #F4D03F;
-            --dreamy-pink: #FF69B4;
+            --dreamy-pink: #FFB6C1;
+            --soft-pink: #FFC0CB;
+            --deep-pink: #FF69B4;
+            --cream: #FFF5F7;
+            --warm-white: #FFFAFB;
+            --text-dark: #4A4A4A;
+            --text-light: #777;
+            --accent-gold: #FFD700;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -38,102 +30,93 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3 {
             font-family: 'Playfair Display', serif;
-            font-weight: 700;
         }
 
-        /* Preloader */
-        .preloader {
+        /* Floating Boba Animation Background */
+        .floating-boba {
             position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-purple), var(--deep-purple));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s, visibility 0.5s;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
         }
 
-        .preloader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .preloader-content {
-            text-align: center;
-            color: white;
-        }
-
-        .preloader-boba {
-            width: 80px;
-            height: 80px;
-            background: white;
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 182, 193, 0.8), rgba(255, 105, 180, 0.4));
             border-radius: 50%;
-            margin: 0 auto 20px;
-            animation: pulse 1.5s infinite;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
+            animation: float 15s infinite ease-in;
+            box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1);
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
-            padding: 20px 60px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 250, 240, 0.95);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(155, 89, 182, 0.15);
-            transition: all 0.3s;
+            background: rgba(255, 250, 251, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(255, 182, 193, 0.2);
         }
 
-        .nav-logo {
+        .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .nav-logo::before {
+        .logo::before {
             content: "🧋";
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             -webkit-text-fill-color: initial;
         }
 
         .nav-links {
             display: flex;
-            gap: 50px;
+            gap: 40px;
             list-style: none;
-            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: var(--text-medium);
+            color: var(--text-dark);
             font-weight: 500;
-            font-size: 0.95rem;
             position: relative;
-            transition: all 0.3s;
+            transition: color 0.3s;
         }
 
         .nav-links a::after {
@@ -143,1330 +126,786 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--primary-purple), var(--deep-purple));
+            background: var(--deep-pink);
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--deep-purple);
+            color: var(--deep-pink);
         }
 
         .nav-links a:hover::after {
             width: 100%;
         }
 
-        .nav-cta {
-            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
-            color: white !important;
-            padding: 12px 28px !important;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
-        }
-
-        .nav-cta::after {
-            display: none !important;
-        }
-
-        /* Hero Section with Parallax */
+        /* Hero Section */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, var(--soft-lavender) 0%, var(--cream) 50%, var(--light-purple) 100%);
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-pink) 100%);
             overflow: hidden;
-            padding: 120px 20px 80px;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(244, 208, 63, 0.1) 0%, transparent 50%);
-            z-index: 0;
-        }
-
-        .floating-elements {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .float-item {
-            position: absolute;
-            font-size: 3rem;
-            opacity: 0.6;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .float-item:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-        .float-item:nth-child(2) { top: 65%; left: 15%; animation-delay: 2s; }
-        .float-item:nth-child(3) { top: 25%; right: 10%; animation-delay: 4s; }
-        .float-item:nth-child(4) { top: 75%; right: 15%; animation-delay: 6s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(10deg); }
         }
 
         .hero-content {
             z-index: 10;
-            max-width: 900px;
-            animation: fadeInUp 1.2s ease-out;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease-out;
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(60px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--deep-purple);
-            box-shadow: 0 4px 20px rgba(155, 89, 182, 0.2);
-            margin-bottom: 30px;
-            border: 2px solid var(--light-purple);
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: 5.5rem;
+            font-size: 5rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple), #6C3483);
+            background: linear-gradient(135deg, var(--deep-pink), #FF1493);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1;
-            letter-spacing: -2px;
+            line-height: 1.1;
         }
 
         .hero-subtitle {
-            font-size: 1.6rem;
-            color: var(--text-medium);
-            margin-bottom: 15px;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
             font-weight: 300;
         }
 
         .hero-tagline {
-            font-size: 1.3rem;
-            color: var(--deep-purple);
+            font-size: 1.2rem;
+            color: var(--deep-pink);
             font-style: italic;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
             font-family: 'Playfair Display', serif;
         }
 
-        .hero-isabella {
-            font-size: 1rem;
-            color: var(--text-medium);
-            margin-bottom: 40px;
-            padding: 15px 30px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 50px;
+        .cta-button {
             display: inline-block;
-            border: 2px solid var(--light-purple);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 45px;
-            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
+            padding: 18px 50px;
+            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
-            box-shadow: 0 15px 40px rgba(142, 68, 173, 0.4);
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
             transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 50px rgba(142, 68, 173, 0.5);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 18px 45px;
-            background: white;
-            color: var(--deep-purple);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border: 3px solid var(--light-purple);
-            transition: all 0.3s;
-        }
-
-        .btn-secondary:hover {
-            background: var(--soft-lavender);
-            transform: translateY(-3px);
-        }
-
-        /* Section Headers */
-        section {
-            padding: 100px 60px;
             position: relative;
+            overflow: hidden;
         }
 
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 70px;
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
         }
 
-        .section-label {
-            display: inline-block;
-            background: var(--soft-lavender);
-            color: var(--deep-purple);
-            padding: 8px 25px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            bottom: 10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,182,193,0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            animation: pulse 3s infinite;
+            z-index: 5;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 50px;
+            position: relative;
+            z-index: 10;
         }
 
         .section-title {
-            font-size: 3.2rem;
-            color: var(--text-dark);
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Subtle Dad Letter - Compact Version */
-        .dad-section {
-            background: linear-gradient(135deg, var(--cream), var(--soft-lavender));
-            padding: 60px;
-        }
-
-        .dad-container {
-            max-width: 700px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px 50px;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--deep-pink);
             position: relative;
-            border-left: 5px solid var(--primary-purple);
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .dad-container::before {
-            content: '💜';
+        .section-title::after {
+            content: '';
             position: absolute;
-            top: -20px;
-            right: 30px;
-            font-size: 2.5rem;
-            background: white;
-            padding: 10px;
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
+            border-radius: 2px;
         }
 
-        .dad-container h3 {
-            font-size: 1.5rem;
-            color: var(--deep-purple);
-            margin-bottom: 20px;
-            font-style: italic;
+        /* About Section */
+        .about {
+            background: var(--warm-white);
         }
 
-        .dad-container p {
-            font-size: 1.05rem;
-            line-height: 1.9;
-            color: var(--text-medium);
-            font-style: italic;
-        }
-
-        .dad-signature {
-            margin-top: 25px;
-            text-align: right;
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--deep-purple);
-        }
-
-        /* Isabella Section with Anime Style */
-        .isabella-section {
-            background: white;
-        }
-
-        .isabella-grid {
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 60px;
             align-items: center;
         }
 
-        .isabella-image-container {
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--deep-pink);
+            font-weight: 600;
+        }
+
+        .about-image {
             position: relative;
-            height: 550px;
-            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
+            height: 500px;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 6rem;
+            box-shadow: 0 20px 60px rgba(255, 182, 193, 0.3);
             overflow: hidden;
-            box-shadow: 0 30px 80px rgba(155, 89, 182, 0.2);
         }
 
-        /* Placeholder for Isabella's anime-style photo */
-        .isabella-photo-placeholder {
-            width: 80%;
-            height: 80%;
-            background: rgba(255,255,255,0.9);
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 3px dashed var(--primary-purple);
-            color: var(--deep-purple);
+        .about-image::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+            animation: slide 20s linear infinite;
         }
 
-        .isabella-photo-placeholder i {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            color: var(--light-purple);
+        @keyframes slide {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0, 0); }
         }
 
-        .isabella-photo-placeholder p {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .isabella-photo-placeholder small {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: 10px;
-        }
-
-        .isabella-content h2 {
-            font-size: 2.8rem;
-            color: var(--text-dark);
-            margin-bottom: 25px;
-            line-height: 1.2;
-        }
-
-        .isabella-content .highlight {
-            background: linear-gradient(135deg, var(--primary-purple), var(--deep-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .isabella-content p {
-            font-size: 1.1rem;
-            color: var(--text-medium);
-            line-height: 1.9;
-            margin-bottom: 20px;
-        }
-
-        .isabella-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 40px;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 25px;
-            background: var(--soft-lavender);
-            border-radius: 20px;
-            transition: all 0.3s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background: var(--light-purple);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--deep-purple);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--text-medium);
-            margin-top: 5px;
-        }
-
-        /* Services Grid */
-        .services-section {
-            background: linear-gradient(to bottom, var(--cream), white);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: white;
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 70px rgba(155, 89, 182, 0.15);
-        }
-
-        .service-image {
-            height: 220px;
-            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            position: relative;
-        }
-
-        /* Placeholder for service photos */
-        .service-photo-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.3);
-            border: 2px dashed var(--primary-purple);
-            color: var(--deep-purple);
-        }
-
-        .service-photo-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .service-photo-placeholder p {
-            font-size: 0.9rem;
-        }
-
-        .service-content {
-            padding: 35px;
-        }
-
-        .service-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--text-dark);
-        }
-
-        .service-content p {
-            color: var(--text-light);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .service-features {
-            list-style: none;
-        }
-
-        .service-features li {
-            padding: 8px 0;
-            color: var(--text-medium);
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .service-features li::before {
-            content: '✓';
-            color: var(--primary-purple);
-            font-weight: bold;
-        }
-
-        /* Menu Section with Real Photo Placeholders */
+        /* Signature Drinks */
         .menu-section {
-            background: white;
-        }
-
-        .menu-filter {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 12px 30px;
-            background: transparent;
-            border: 2px solid var(--light-purple);
-            border-radius: 50px;
-            color: var(--deep-purple);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .filter-btn.active, .filter-btn:hover {
-            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.3);
+            background: linear-gradient(to bottom, var(--cream), var(--warm-white));
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .menu-item {
+        .menu-card {
             background: white;
             border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.2);
             transition: all 0.4s;
             position: relative;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 70px rgba(155, 89, 182, 0.2);
-        }
-
-        .menu-image {
-            height: 280px;
-            position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
-        /* Placeholder for drink photos - REPLACE THESE */
-        .drink-photo-placeholder {
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--soft-lavender), var(--light-purple));
-            border: 3px dashed var(--primary-purple);
-            color: var(--deep-purple);
-            position: relative;
+            height: 5px;
+            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
         }
 
-        .drink-photo-placeholder i {
-            font-size: 3.5rem;
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+            border-color: var(--dreamy-pink);
+        }
+
+        .drink-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .menu-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            opacity: 0.5;
+            color: var(--deep-pink);
         }
 
-        .drink-photo-placeholder p {
+        .menu-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .price {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 25px;
+            background: var(--cream);
+            color: var(--deep-pink);
+            border-radius: 20px;
             font-weight: 600;
             font-size: 1.1rem;
         }
 
-        .drink-photo-placeholder small {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            margin-top: 8px;
-        }
-
-        /* When you add real photos, they will look like this: */
-        .menu-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .menu-item:hover .menu-image img {
-            transform: scale(1.1);
-        }
-
-        .menu-badge {
+        .tag {
             position: absolute;
             top: 20px;
             right: 20px;
             background: var(--accent-gold);
             color: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            z-index: 10;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
         }
 
-        .menu-badge.new {
-            background: var(--deep-purple);
+        /* Features Section */
+        .features {
+            background: var(--warm-white);
         }
 
-        .menu-badge.isabella {
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--primary-purple));
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .menu-info {
-            padding: 30px;
+        .feature-item {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
         }
 
-        .menu-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
+        .feature-item:hover {
+            transform: translateY(-5px);
         }
 
-        .menu-header h3 {
-            font-size: 1.4rem;
-            color: var(--text-dark);
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
         }
 
-        .menu-price {
-            font-size: 1.3rem;
-            color: var(--deep-purple);
-            font-weight: 700;
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--deep-pink);
         }
 
-        .menu-desc {
+        .feature-item p {
+            font-size: 0.9rem;
             color: var(--text-light);
-            font-size: 0.95rem;
-            line-height: 1.7;
         }
 
         /* Gallery Section */
-        .gallery-section {
-            background: var(--cream);
+        .gallery {
+            background: linear-gradient(to bottom, var(--warm-white), var(--cream));
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-auto-rows: 250px;
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
             border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
             transition: all 0.4s;
         }
 
-        .gallery-item.large {
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.3);
+        }
+
+        .gallery-item:nth-child(2) {
             grid-column: span 2;
             grid-row: span 2;
         }
 
-        .gallery-item.wide {
-            grid-column: span 2;
-        }
-
-        /* Placeholder for gallery photos */
-        .gallery-photo-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.4);
-            border: 2px dashed var(--primary-purple);
-            color: var(--deep-purple);
-        }
-
-        .gallery-photo-placeholder i {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            opacity: 0.6;
-        }
-
-        .gallery-photo-placeholder p {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 25px;
-            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
-            color: white;
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
         /* Visit Section */
-        .visit-section {
-            background: linear-gradient(135deg, var(--deep-purple), #6C3483);
+        .visit {
+            background: var(--deep-pink);
             color: white;
-        }
-
-        .visit-section .section-title {
-            color: white;
-        }
-
-        .visit-section .section-subtitle {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .visit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            max-width: 1200px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .visit-info-card {
-            background: rgba(255,255,255,0.1);
-            padding: 50px;
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .visit-item {
-            display: flex;
-            align-items: start;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        .visit-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .visit-icon {
-            width: 60px;
-            height: 60px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-
-        .visit-text h4 {
-            font-size: 1.4rem;
-            margin-bottom: 8px;
-            color: var(--accent-gold);
-        }
-
-        .visit-text p {
-            font-size: 1.1rem;
-            color: rgba(255,255,255,0.9);
-            line-height: 1.6;
-        }
-
-        .visit-map-container {
-            height: 500px;
-            background: white;
-            border-radius: 30px;
+            text-align: center;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
+        }
+
+        .visit::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.3;
+        }
+
+        .visit .section-title {
+            color: white;
+        }
+
+        .visit .section-title::after {
+            background: white;
+        }
+
+        .visit-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .visit-details {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 40px;
+        }
+
+        .visit-details strong {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .hours {
+            background: rgba(255,255,255,0.2);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hours h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
         }
 
         /* Footer */
         footer {
             background: var(--text-dark);
             color: white;
-            padding: 70px 60px 40px;
+            padding: 60px 50px 30px;
             text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--deep-pink));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .footer-tagline {
-            font-size: 1.2rem;
-            color: #aaa;
-            margin-bottom: 40px;
             font-style: italic;
-        }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 50px;
-        }
-
-        .footer-social a {
-            width: 55px;
-            height: 55px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .footer-social a:hover {
-            background: var(--primary-purple);
-            transform: translateY(-5px);
-        }
-
-        .footer-credit {
-            background: rgba(155, 89, 182, 0.2);
-            padding: 20px 30px;
-            border-radius: 15px;
-            display: inline-block;
             margin-bottom: 30px;
-            border: 1px solid rgba(155, 89, 182, 0.3);
+            color: #aaa;
         }
 
-        .footer-credit p {
-            color: var(--light-purple);
-            font-style: italic;
-            margin: 0;
-            font-size: 0.95rem;
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--dreamy-pink);
         }
 
         .copyright {
+            border-top: 1px solid #555;
+            padding-top: 30px;
             color: #777;
             font-size: 0.9rem;
-            border-top: 1px solid #444;
-            padding-top: 30px;
+        }
+
+        /* Special Dad Message */
+        .dad-message {
+            background: linear-gradient(135deg, #FFF8E7, var(--cream));
+            padding: 80px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dad-message::before {
+            content: '❤️';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .dad-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .dad-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--deep-pink);
+            margin-bottom: 30px;
+        }
+
+        .dad-content p {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--deep-pink);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 4rem; }
-            .isabella-grid { grid-template-columns: 1fr; gap: 60px; }
-            .isabella-image-container { height: 400px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .visit-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
-            .gallery-item.large { grid-column: span 2; grid-row: span 2; }
-        }
-
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .hero h1 { font-size: 3rem; }
-            .section-title { font-size: 2.2rem; }
-            nav { padding: 15px 30px; }
-            .nav-links { display: none; }
-            .hero-buttons { flex-direction: column; align-items: center; }
-            .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
-            .isabella-stats { grid-template-columns: 1fr; }
-            .menu-grid { grid-template-columns: 1fr; }
-            .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
-            .gallery-item.large, .gallery-item.wide { grid-column: span 1; grid-row: span 1; }
-            .dad-container { padding: 30px; }
-            section { padding: 70px 30px; }
+            .about-content { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .gallery-item:nth-child(2) { grid-column: span 1; grid-row: span 1; }
+            .hero-image { display: none; }
         }
 
-        /* Animation Classes */
-        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        
-        .slide-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s ease-out; }
-        .slide-left.visible { opacity: 1; transform: translateX(0); }
-        
-        .slide-right { opacity: 0; transform: translateX(60px); transition: all 0.8s ease-out; }
-        .slide-right.visible { opacity: 1; transform: translateX(0); }
+        @media (max-width: 600px) {
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.5rem; }
+            section { padding: 60px 20px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
 
-        .scale-in { opacity: 0; transform: scale(0.8); transition: all 0.8s ease-out; }
-        .scale-in.visible { opacity: 1; transform: scale(1); }
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader" id="preloader">
-        <div class="preloader-content">
-            <div class="preloader-boba">🧋</div>
-            <p>Loading DreamyTea...</p>
-        </div>
-    </div>
+    <!-- Floating Boba Background -->
+    <div class="floating-boba" id="bobaContainer"></div>
 
     <!-- Navigation -->
     <nav>
-        <a href="#" class="nav-logo">DreamyTea</a>
+        <a href="#" class="logo">DreamyTea</a>
         <ul class="nav-links">
-            <li><a href="#isabella">Meet Isabella</a></li>
-            <li><a href="#services">Services</a></li>
+            <li><a href="#about">Our Story</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#gallery">Gallery</a></li>
-            <li><a href="#visit" class="nav-cta">Visit Us</a></li>
+            <li><a href="#features">Experience</a></li>
+            <li><a href="#visit">Visit Us</a></li>
         </ul>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="floating-elements">
-            <div class="float-item">🧋</div>
-            <div class="float-item">🌸</div>
-            <div class="float-item">✨</div>
-            <div class="float-item">💜</div>
-        </div>
         <div class="hero-content">
-            <div class="hero-badge">
-                <i class="fas fa-star"></i> Orlando's Most Aesthetic Boba Shop
-            </div>
             <h1>DreamyTea</h1>
             <p class="hero-subtitle">Winter Garden, Orlando</p>
             <p class="hero-tagline">"Where Every Sip is a Dream Come True"</p>
-            <div class="hero-isabella">🎨 Crafted with love by Isabella Betz 🎨</div>
-            <div class="hero-buttons">
-                <a href="#menu" class="btn-primary">Explore Menu <i class="fas fa-arrow-right"></i></a>
-                <a href="#services" class="btn-secondary">Our Services</a>
-            </div>
+            <a href="#menu" class="cta-button">Explore Our Dreams ✨</a>
+        </div>
+        <div class="hero-image">🧋</div>
+    </section>
+
+    <!-- Dad's Special Message -->
+    <section class="dad-message">
+        <div class="dad-content">
+            <h2>A Father's Pride</h2>
+            <p>"To my incredible daughter and her twin sister — watching you both turn your dream into reality fills my heart with immeasurable pride. This website is a small token of my love and admiration for your hard work, creativity, and the joy you bring to every customer who walks through your doors. DreamyTea isn't just a boba shop; it's a reflection of your passion and dedication. Keep dreaming big, my girls. — Dad ❤️"</p>
+            <div class="signature">With Love, Always</div>
         </div>
     </section>
 
-    <!-- Subtle Dad Letter -->
-    <section class="dad-section">
-        <div class="dad-container fade-in">
-            <h3>A Note from Dad</h3>
-            <p>Isabella, watching you bring DreamyTea to life with your artistry and dedication fills me with immense pride. This shop is a reflection of your creativity and heart. Keep dreaming big. — Dad</p>
-        </div>
-    </section>
-
-    <!-- Isabella Section -->
-    <section class="isabella-section" id="isabella">
-        <div class="section-header">
-            <span class="section-label">The Creative Force</span>
-            <h2 class="section-title">Meet Isabella Betz</h2>
-            <p class="section-subtitle">Artist, innovator, and the heart behind DreamyTea's magic</p>
-        </div>
-        <div class="isabella-grid">
-            <div class="isabella-image-container slide-left">
-                <!-- REPLACE THIS PLACEHOLDER WITH ISABELLA'S ANIME-STYLE PHOTO -->
-                <div class="isabella-photo-placeholder">
-                    <i class="fas fa-user-circle"></i>
-                    <p>Isabella's Photo</p>
-                    <small>Add anime-style portrait here<br>Recommended: 500x600px</small>
-                </div>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2 class="section-title fade-in">Our Dreamy Story</h2>
+        <div class="about-content fade-in">
+            <div class="about-text">
+                <p>Founded in 2024 by twin sisters with a shared passion for creating magical moments, <span class="highlight">DreamyTea</span> has quickly become Winter Garden's most <span class="highlight">aesthetic boba destination</span>.</p>
+                <p>What started as a dream between two sisters has blossomed into a vibrant community hub where every drink is crafted with love and every visit feels like stepping into a pink-hued paradise.</p>
+                <p>We're not just serving boba — we're serving <span class="highlight">dreams in a cup</span>. From our signature Pina Colada with mango boba to our secret menu surprises, every sip tells a story of passion, creativity, and sisterhood.</p>
             </div>
-            <div class="isabella-content slide-right">
-                <h2>Where Art Meets <span class="highlight">Boba Magic</span></h2>
-                <p>While DreamyTea was founded by twin sisters Cristina Dewrell and Andrea Perlas, the shop's vibrant soul comes from their niece, <strong>Isabella Betz</strong>. With years of experience working at boba shops across Orlando, Isabella brought invaluable expertise in what customers love.</p>
-                <p>She personally hand-drew every illustration on the menu, helped craft the perfect offerings, and manages the shop's social media presence. Her recent addition of chai to the menu has already become a customer favorite.</p>
-                <div class="isabella-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Hand-Drawn Art</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5⭐</span>
-                        <span class="stat-label">Customer Rating</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">2024</span>
-                        <span class="stat-label">Year Founded</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <div class="section-header">
-            <span class="section-label">What We Offer</span>
-            <h2 class="section-title">Premium Services</h2>
-            <p class="section-subtitle">From catering to boba on tap, we bring the DreamyTea experience to you</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card scale-in">
-                <div class="service-image">
-                    <!-- REPLACE WITH CATERING PHOTO -->
-                    <div class="service-photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Catering Photo</p>
-                    </div>
-                </div>
-                <div class="service-content">
-                    <h3>Catering Services</h3>
-                    <p>Bring the DreamyTea experience to your special events, parties, and celebrations with custom drink menus.</p>
-                    <ul class="service-features">
-                        <li>Birthday Parties & Events</li>
-                        <li>Corporate Functions</li>
-                        <li>Wedding Receptions</li>
-                        <li>Custom Drink Menus</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-card scale-in">
-                <div class="service-image">
-                    <!-- REPLACE WITH BOBA ON TAP PHOTO -->
-                    <div class="service-photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Boba on Tap Photo</p>
-                    </div>
-                </div>
-                <div class="service-content">
-                    <h3>Boba on Tap</h3>
-                    <p>Revolutionary self-serve boba station perfect for offices, events, and permanent installations.</p>
-                    <ul class="service-features">
-                        <li>Self-Serve Stations</li>
-                        <li>Multiple Flavor Options</li>
-                        <li>Custom Branding Available</li>
-                        <li>Full Setup & Support</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="service-card scale-in">
-                <div class="service-image">
-                    <!-- REPLACE WITH HELLO KITTY SHOP PHOTO -->
-                    <div class="service-photo-placeholder">
-                        <i class="fas fa-camera"></i>
-                        <p>Hello Kitty Shop Photo</p>
-                    </div>
-                </div>
-                <div class="service-content">
-                    <h3>Hello Kitty Shop</h3>
-                    <p>Exclusive gift shop featuring curated Hello Kitty merchandise, limited editions, and perfect gifts.</p>
-                    <ul class="service-features">
-                        <li>Exclusive Merchandise</li>
-                        <li>Limited Edition Items</li>
-                        <li>Gift Wrapping Services</li>
-                        <li>Special Collections</li>
-                    </ul>
-                </div>
-            </div>
+            <div class="about-image">💕</div>
         </div>
     </section>
 
     <!-- Menu Section -->
     <section class="menu-section" id="menu">
-        <div class="section-header">
-            <span class="section-label">Our Creations</span>
-            <h2 class="section-title">Isabella's Menu</h2>
-            <p class="section-subtitle">Each drink crafted with artistic precision and love</p>
-        </div>
-        <div class="menu-filter">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Milk Teas</button>
-            <button class="filter-btn">Fruit Teas</button>
-            <button class="filter-btn">Specialty</button>
-        </div>
+        <h2 class="section-title fade-in">Signature Dreams</h2>
         <div class="menu-grid">
-            <!-- Drink 1: Pina Colada -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <!-- REPLACE WITH REAL DRINK PHOTO -->
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FFF8DC, #FFE4B5);">
-                        <i class="fas fa-image"></i>
-                        <p>Pina Colada Dream</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                    <span class="menu-badge">Bestseller</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>Pina Colada Dream</h3>
-                        <span class="menu-price">$7.50</span>
-                    </div>
-                    <p class="menu-desc">Tropical pina colada slush with sweet mango boba pearls. Isabella's favorite creation.</p>
-                </div>
+            <div class="menu-card fade-in">
+                <span class="tag">BESTSELLER</span>
+                <span class="drink-icon">🥥🥭</span>
+                <h3>Pina Colada Dream</h3>
+                <p>Our signature tropical escape featuring refreshing pina colada slush paired with sweet mango boba pearls. A vacation in every sip.</p>
+                <span class="price">$7.50</span>
             </div>
-
-            <!-- Drink 2: Cupid's Cup -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FFB6C1, #FFC0CB);">
-                        <i class="fas fa-image"></i>
-                        <p>Cupid's Cup</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>Cupid's Cup</h3>
-                        <span class="menu-price">$6.50</span>
-                    </div>
-                    <p class="menu-desc">Strawberry milk blended with fresh strawberry puree. Sweet, creamy, and made with love.</p>
-                </div>
+            
+            <div class="menu-card fade-in">
+                <span class="drink-icon">🍓</span>
+                <h3>Cupid's Cup</h3>
+                <p>Strawberry milk blended with fresh strawberry puree. Sweet, creamy, and made with love.</p>
+                <span class="price">$6.50</span>
             </div>
-
-            <!-- Drink 3: Isabella's Chai -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #D2B48C, #C4A484);">
-                        <i class="fas fa-image"></i>
-                        <p>Isabella's Chai</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                    <span class="menu-badge new">NEW</span>
-                    <span class="menu-badge isabella" style="top: 60px;">Isabella's</span>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>Isabella's Chai</h3>
-                        <span class="menu-price">$6.00</span>
-                    </div>
-                    <p class="menu-desc">Recently added by Isabella herself—warm, spiced, and perfectly comforting.</p>
-                </div>
+            
+            <div class="menu-card fade-in">
+                <span class="tag">SECRET MENU</span>
+                <span class="drink-icon">🍫</span>
+                <h3>Milo Dinosaur</h3>
+                <p>Chocolate milk elevated with Milo powder — a nostalgic favorite with a dreamy twist.</p>
+                <span class="price">$6.50</span>
             </div>
-
-            <!-- Drink 4: Milo Dinosaur -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #8B4513, #A0522D);">
-                        <i class="fas fa-image"></i>
-                        <p>Milo Dinosaur</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>Milo Dinosaur</h3>
-                        <span class="menu-price">$6.50</span>
-                    </div>
-                    <p class="menu-desc">Chocolate milk elevated with Milo powder—a nostalgic favorite with a dreamy twist.</p>
-                </div>
+            
+            <div class="menu-card fade-in">
+                <span class="drink-icon">🧋</span>
+                <h3>My Thai</h3>
+                <p>Authentic Thai tea with condensed milk — rich, creamy, and perfectly balanced.</p>
+                <span class="price">$6.00</span>
             </div>
-
-            <!-- Drink 5: Thai Tea -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FF8C00, #FFA500);">
-                        <i class="fas fa-image"></i>
-                        <p>My Thai</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>My Thai</h3>
-                        <span class="menu-price">$6.00</span>
-                    </div>
-                    <p class="menu-desc">Authentic Thai tea with condensed milk—rich, creamy, and perfectly balanced.</p>
-                </div>
+            
+            <div class="menu-card fade-in">
+                <span class="drink-icon">🍠</span>
+                <h3>Heavenly Taro</h3>
+                <p>Creamy taro milk tea with a hint of vanilla — smooth, dreamy, and utterly divine.</p>
+                <span class="price">$6.50</span>
             </div>
+            
+            <div class="menu-card fade-in">
+                <span class="tag">REFRESHING</span>
+                <span class="drink-icon">🌺</span>
+                <h3>Hibiscus Raspberry</h3>
+                <p>Black tea infused with hibiscus and raspberry — floral, fruity, and beautifully pink.</p>
+                <span class="price">$6.00</span>
+            </div>
+        </div>
+    </section>
 
-            <!-- Drink 6: Taro -->
-            <div class="menu-item fade-in">
-                <div class="menu-image">
-                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #DDA0DD, #E6E6FA);">
-                        <i class="fas fa-image"></i>
-                        <p>Heavenly Taro</p>
-                        <small>Add photo: 600x400px</small>
-                    </div>
-                </div>
-                <div class="menu-info">
-                    <div class="menu-header">
-                        <h3>Heavenly Taro</h3>
-                        <span class="menu-price">$6.50</span>
-                    </div>
-                    <p class="menu-desc">Creamy taro milk tea with vanilla—smooth, dreamy, and utterly divine.</p>
-                </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title fade-in">The Dreamy Experience</h2>
+        <div class="features-grid fade-in">
+            <div class="feature-item">
+                <div class="feature-icon">📸</div>
+                <h3>Aesthetic Vibes</h3>
+                <p>Instagram-worthy pink decor and dreamy ambiance perfect for your feed</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎀</div>
+                <h3>Hello Kitty Shop</h3>
+                <p>Exclusive gift shop featuring curated Hello Kitty merchandise and surprises</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🧇</div>
+                <h3>Croffles & More</h3>
+                <p>Delicious croffles, waffle dogs, and halo halo to pair with your drinks</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✨</div>
+                <h3>Secret Menu</h3>
+                <p>Ask about our off-menu creations for a truly exclusive experience</p>
             </div>
         </div>
     </section>
 
     <!-- Gallery Section -->
-    <section class="gallery-section" id="gallery">
-        <div class="section-header">
-            <span class="section-label">Dreamy Moments</span>
-            <h2 class="section-title">Photo Gallery</h2>
-            <p class="section-subtitle">Capturing the magic of DreamyTea</p>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-item large fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Shop Interior</p>
-                </div>
-                <div class="gallery-overlay">Aesthetic Pink Paradise</div>
-            </div>
-            <div class="gallery-item fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Drink Close-up</p>
-                </div>
-                <div class="gallery-overlay">Signature Drinks</div>
-            </div>
-            <div class="gallery-item fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Hello Kitty</p>
-                </div>
-                <div class="gallery-overlay">Merchandise</div>
-            </div>
-            <div class="gallery-item wide fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Event/Catering</p>
-                </div>
-                <div class="gallery-overlay">Catering Events</div>
-            </div>
-            <div class="gallery-item fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Isabella Art</p>
-                </div>
-                <div class="gallery-overlay">Hand-Drawn Menu</div>
-            </div>
-            <div class="gallery-item fade-in">
-                <div class="gallery-photo-placeholder">
-                    <i class="fas fa-images"></i>
-                    <p>Happy Customers</p>
-                </div>
-                <div class="gallery-overlay">Customer Moments</div>
-            </div>
+    <section class="gallery">
+        <h2 class="section-title fade-in">Dreamy Moments</h2>
+        <div class="gallery-grid fade-in">
+            <div class="gallery-item">🧋</div>
+            <div class="gallery-item">💕</div>
+            <div class="gallery-item">🌸</div>
+            <div class="gallery-item">✨</div>
+            <div class="gallery-item">🎀</div>
         </div>
     </section>
 
     <!-- Visit Section -->
-    <section class="visit-section" id="visit">
-        <div class="section-header">
-            <span class="section-label" style="background: rgba(255,255,255,0.2); color: white;">Find Us</span>
-            <h2 class="section-title">Visit the Dream</h2>
-            <p class="section-subtitle">Come experience the magic in person</p>
-        </div>
-        <div class="visit-grid">
-            <div class="visit-info-card slide-left">
-                <div class="visit-item">
-                    <div class="visit-icon"><i class="fas fa-map-marker-alt"></i></div>
-                    <div class="visit-text">
-                        <h4>Location</h4>
-                        <p>12623 W Colonial Dr, Ste B<br>Winter Garden, FL 34787</p>
-                    </div>
-                </div>
-                <div class="visit-item">
-                    <div class="visit-icon"><i class="fas fa-phone"></i></div>
-                    <div class="visit-text">
-                        <h4>Phone</h4>
-                        <p>(407) 347-0051</p>
-                    </div>
-                </div>
-                <div class="visit-item">
-                    <div class="visit-icon"><i class="fas fa-clock"></i></div>
-                    <div class="visit-text">
-                        <h4>Hours</h4>
-                        <p>Monday - Sunday<br>12:00 PM - 8:00 PM</p>
-                    </div>
-                </div>
-                <a href="tel:4073470051" class="btn-primary" style="margin-top: 20px; display: inline-flex;">
-                    <i class="fas fa-phone"></i> Call to Order
-                </a>
+    <section class="visit" id="visit">
+        <h2 class="section-title fade-in">Visit the Dream</h2>
+        <div class="visit-content fade-in">
+            <div class="visit-details">
+                <strong>📍 Find Us</strong>
+                12623 W Colonial Dr, Ste B<br>
+                Winter Garden, FL 34787<br>
+                <strong>📞 (407) 347-0051</strong>
             </div>
-            <div class="visit-map-container slide-right">
-                <i class="fas fa-map-marked-alt"></i>
+            
+            <div class="hours">
+                <h3>🕐 Opening Hours</h3>
+                <p>Monday - Sunday<br>
+                12:00 PM - 8:00 PM<br>
+                <em>Come chase your dreams with us!</em></p>
             </div>
+            
+            <a href="tel:4073470051" class="cta-button" style="margin-top: 40px;">Call to Order 📞</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-logo">DreamyTea</div>
-        <p class="footer-tagline">"Arguably the best place for boba in Florida"</p>
-        <div class="footer-social">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-        </div>
-        <div class="footer-credit">
-            <p>🎨 Menu Artwork & Social Media by Isabella Betz | Made with 💜 by Dad</p>
-        </div>
-        <div class="copyright">
-            <p>© 2024 DreamyTea. All dreams reserved. | Winter Garden, Orlando</p>
+        <div class="footer-content">
+            <div class="footer-logo">DreamyTea</div>
+            <p class="footer-tagline">"Arguably the best place for boba in Florida" — Our Customers</p>
+            <div class="social-links">
+                <a href="#">📸 Instagram</a>
+                <a href="#">📘 Facebook</a>
+                <a href="#">🎵 TikTok</a>
+            </div>
+            <div class="copyright">
+                <p>Made with 💕 by Dad | © 2024 DreamyTea. All dreams reserved.</p>
+                <p>Twin Sisters Serving Magic in Every Cup</p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Preloader
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('preloader').classList.add('hidden');
-            }, 1000);
-        });
+        // Create floating boba bubbles
+        function createBubbles() {
+            const container = document.getElementById('bobaContainer');
+            const bubbleCount = 15;
+            
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                bubble.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(bubble);
+            }
+        }
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Intersection Observer for scroll animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
+            document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        }
 
-        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scroll
+        // Smooth scroll for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1477,21 +916,19 @@
             });
         });
 
-        // Filter buttons
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
+        // Initialize
+        window.addEventListener('load', () => {
+            createBubbles();
+            initScrollAnimations();
         });
 
-        // Parallax on scroll
+        // Parallax effect for hero
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            document.querySelectorAll('.float-item').forEach((el, index) => {
-                const speed = 0.5 + (index * 0.1);
-                el.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
-            });
+            const parallax = document.querySelector('.hero-image');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
         });
     </script>
 </body>
