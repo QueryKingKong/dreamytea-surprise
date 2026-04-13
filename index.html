@@ -1,30 +1,24 @@
-
-            }
-        });
-    </script>
-</body>
-</html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DreamyTea | Orlando's Most Aesthetic Boba Experience</title>
+    <title>DreamyTea | Orlando's Premier Boba Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --dreamy-pink: #FF6B9D;
-            --soft-pink: #FFB8D0;
-            --light-pink: #FFE4ED;
-            --deep-pink: #E91E63;
-            --cream: #FFF8F5;
-            --warm-white: #FFFCFB;
-            --text-dark: #2D2D2D;
-            --text-medium: #5A5A5A;
-            --text-light: #8B8B8B;
-            --accent-gold: #FFD700;
-            --bubble-tea: #D4A373;
-            --taro-purple: #C8A2C8;
-            --matcha-green: #90EE90;
+            --primary-purple: #9B59B6;
+            --deep-purple: #8E44AD;
+            --light-purple: #D2B4DE;
+            --soft-lavender: #E8DAEF;
+            --cream: #FDF5E6;
+            --warm-white: #FFFAF0;
+            --text-dark: #2C3E50;
+            --text-medium: #5D6D7E;
+            --text-light: #85929E;
+            --accent-gold: #F4D03F;
+            --dreamy-pink: #FF69B4;
         }
 
         * {
@@ -42,7 +36,6 @@
             background: var(--warm-white);
             color: var(--text-dark);
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
         h1, h2, h3, h4 {
@@ -50,46 +43,61 @@
             font-weight: 700;
         }
 
-        /* Animated Background */
-        .boba-rain {
+        /* Preloader */
+        .preloader {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-purple), var(--deep-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
         }
 
-        .falling-boba {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 107, 157, 0.6), rgba(233, 30, 99, 0.3));
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-content {
+            text-align: center;
+            color: white;
+        }
+
+        .preloader-boba {
+            width: 80px;
+            height: 80px;
+            background: white;
             border-radius: 50%;
-            animation: fall linear infinite;
-            box-shadow: inset -3px -3px 5px rgba(0,0,0,0.1);
+            margin: 0 auto 20px;
+            animation: pulse 1.5s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
         }
 
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
         }
 
         /* Navigation */
         nav {
             position: fixed;
             width: 100%;
-            padding: 15px 50px;
+            padding: 20px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            background: rgba(255, 252, 251, 0.95);
+            background: rgba(255, 250, 240, 0.95);
             backdrop-filter: blur(20px);
-            box-shadow: 0 4px 30px rgba(255, 107, 157, 0.15);
+            box-shadow: 0 4px 30px rgba(155, 89, 182, 0.15);
             transition: all 0.3s;
         }
 
@@ -97,21 +105,19 @@
             font-family: 'Playfair Display', serif;
             font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
-            letter-spacing: -1px;
         }
 
         .nav-logo::before {
             content: "🧋";
             font-size: 2.5rem;
             -webkit-text-fill-color: initial;
-            filter: drop-shadow(2px 2px 4px rgba(255, 107, 157, 0.3));
         }
 
         .nav-links {
@@ -128,23 +134,21 @@
             font-size: 0.95rem;
             position: relative;
             transition: all 0.3s;
-            padding: 8px 0;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
             width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
-            border-radius: 2px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-purple), var(--deep-purple));
             transition: width 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--deep-pink);
+            color: var(--deep-purple);
         }
 
         .nav-links a:hover::after {
@@ -152,23 +156,18 @@
         }
 
         .nav-cta {
-            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
             color: white !important;
             padding: 12px 28px !important;
             border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
         }
 
         .nav-cta::after {
             display: none !important;
         }
 
-        .nav-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-        }
-
-        /* Hero Section - Vivid & Impactful */
+        /* Hero Section with Parallax */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -176,31 +175,53 @@
             justify-content: center;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, var(--light-pink) 0%, var(--cream) 50%, var(--soft-pink) 100%);
+            background: linear-gradient(135deg, var(--soft-lavender) 0%, var(--cream) 50%, var(--light-purple) 100%);
             overflow: hidden;
             padding: 120px 20px 80px;
         }
 
-        .hero::before {
-            content: '';
+        .hero-bg {
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(255, 107, 157, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(155, 89, 182, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(244, 208, 63, 0.1) 0%, transparent 50%);
+            z-index: 0;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .float-item {
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.6;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .float-item:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .float-item:nth-child(2) { top: 65%; left: 15%; animation-delay: 2s; }
+        .float-item:nth-child(3) { top: 25%; right: 10%; animation-delay: 4s; }
+        .float-item:nth-child(4) { top: 75%; right: 15%; animation-delay: 6s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
         }
 
         .hero-content {
             z-index: 10;
-            max-width: 1000px;
+            max-width: 900px;
             animation: fadeInUp 1.2s ease-out;
         }
 
@@ -210,62 +231,54 @@
         }
 
         .hero-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             background: white;
             padding: 12px 30px;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 600;
-            color: var(--deep-pink);
-            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.2);
+            color: var(--deep-purple);
+            box-shadow: 0 4px 20px rgba(155, 89, 182, 0.2);
             margin-bottom: 30px;
-            border: 2px solid var(--soft-pink);
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            border: 2px solid var(--light-purple);
         }
 
         .hero h1 {
-            font-size: 6rem;
+            font-size: 5.5rem;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--deep-pink), #FF1493, var(--dreamy-pink));
+            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple), #6C3483);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             line-height: 1;
-            letter-spacing: -3px;
-            text-shadow: 0 10px 40px rgba(233, 30, 99, 0.2);
+            letter-spacing: -2px;
         }
 
         .hero-subtitle {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--text-medium);
             margin-bottom: 15px;
             font-weight: 300;
         }
 
         .hero-tagline {
-            font-size: 1.4rem;
-            color: var(--deep-pink);
+            font-size: 1.3rem;
+            color: var(--deep-purple);
             font-style: italic;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             font-family: 'Playfair Display', serif;
-            font-weight: 600;
         }
 
         .hero-isabella {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: var(--text-medium);
-            margin-bottom: 50px;
-            padding: 20px 40px;
+            margin-bottom: 40px;
+            padding: 15px 30px;
             background: rgba(255,255,255,0.9);
             border-radius: 50px;
             display: inline-block;
-            border: 3px solid var(--soft-pink);
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.15);
-            font-weight: 500;
+            border: 2px solid var(--light-purple);
         }
 
         .hero-buttons {
@@ -279,106 +292,60 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 20px 50px;
-            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+            padding: 18px 45px;
+            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
-            box-shadow: 0 15px 40px rgba(233, 30, 99, 0.4);
+            box-shadow: 0 15px 40px rgba(142, 68, 173, 0.4);
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: 0.5s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(233, 30, 99, 0.5);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(142, 68, 173, 0.5);
         }
 
         .btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            padding: 20px 50px;
+            padding: 18px 45px;
             background: white;
-            color: var(--deep-pink);
+            color: var(--deep-purple);
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
-            border: 3px solid var(--soft-pink);
+            border: 3px solid var(--light-purple);
             transition: all 0.3s;
         }
 
         .btn-secondary:hover {
-            background: var(--light-pink);
+            background: var(--soft-lavender);
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
         }
 
-        /* Floating Drink Visuals */
-        .hero-visuals {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .floating-drink {
-            position: absolute;
-            font-size: 4rem;
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
-            opacity: 0.8;
-        }
-
-        .floating-drink:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-drink:nth-child(2) { top: 60%; left: 15%; animation-delay: 1s; }
-        .floating-drink:nth-child(3) { top: 30%; right: 10%; animation-delay: 2s; }
-        .floating-drink:nth-child(4) { top: 70%; right: 15%; animation-delay: 3s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-
-        /* Section Styling */
+        /* Section Headers */
         section {
-            padding: 100px 50px;
+            padding: 100px 60px;
             position: relative;
-            z-index: 10;
         }
 
         .section-header {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 80px;
+            margin: 0 auto 70px;
         }
 
         .section-label {
             display: inline-block;
-            background: var(--light-pink);
-            color: var(--deep-pink);
+            background: var(--soft-lavender);
+            color: var(--deep-purple);
             padding: 8px 25px;
             border-radius: 50px;
             font-size: 0.85rem;
@@ -389,7 +356,7 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: var(--text-dark);
             margin-bottom: 20px;
             line-height: 1.2;
@@ -402,126 +369,58 @@
             margin: 0 auto;
         }
 
-        /* Dad's Letter Section - Premium Design */
+        /* Subtle Dad Letter - Compact Version */
         .dad-section {
-            background: linear-gradient(135deg, #FFF9F0, var(--light-pink));
-            position: relative;
-            overflow: hidden;
-        }
-
-        .dad-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle at 20% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 50%),
-                              radial-gradient(circle at 80% 80%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
-        }
-
-        .letter-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .envelope {
-            background: white;
+            background: linear-gradient(135deg, var(--cream), var(--soft-lavender));
             padding: 60px;
-            border-radius: 30px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.1);
+        }
+
+        .dad-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             position: relative;
-            transform: rotate(-1deg);
-            transition: transform 0.3s;
+            border-left: 5px solid var(--primary-purple);
         }
 
-        .envelope:hover {
-            transform: rotate(0deg) scale(1.01);
-        }
-
-        .envelope::before {
-            content: '';
+        .dad-container::before {
+            content: '💜';
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--deep-pink));
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .wax-seal {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-gold), #FFA500);
+            top: -20px;
+            right: 30px;
+            font-size: 2.5rem;
+            background: white;
+            padding: 10px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transform: rotate(15deg);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        .letter-content h2 {
-            font-size: 2.8rem;
-            color: var(--deep-pink);
-            margin-bottom: 40px;
-            text-align: center;
+        .dad-container h3 {
+            font-size: 1.5rem;
+            color: var(--deep-purple);
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
-        .letter-body {
+        .dad-container p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        .dad-signature {
+            margin-top: 25px;
+            text-align: right;
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem;
-            line-height: 2.2;
-            color: var(--text-dark);
-            text-align: left;
+            color: var(--deep-purple);
         }
 
-        .letter-body p {
-            margin-bottom: 25px;
-            text-indent: 30px;
-        }
-
-        .letter-body p:first-child {
-            text-indent: 0;
-        }
-
-        .letter-body p:first-child::first-letter {
-            font-size: 3rem;
-            float: left;
-            line-height: 1;
-            padding-right: 15px;
-            color: var(--deep-pink);
-            font-weight: 700;
-        }
-
-        .letter-signature {
-            margin-top: 50px;
-            text-align: right;
-            font-size: 2rem;
-            color: var(--deep-pink);
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-        }
-
-        .letter-signature::before {
-            content: 'With all my love,';
-            display: block;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        /* Isabella Spotlight - Modern Layout */
+        /* Isabella Section with Anime Style */
         .isabella-section {
             background: white;
         }
@@ -529,135 +428,109 @@
         .isabella-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 100px;
             max-width: 1200px;
             margin: 0 auto;
             align-items: center;
         }
 
-        .isabella-visual {
+        .isabella-image-container {
             position: relative;
-            height: 600px;
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--taro-purple));
-            border-radius: 40px;
+            height: 550px;
+            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(155, 89, 182, 0.2);
+        }
+
+        /* Placeholder for Isabella's anime-style photo */
+        .isabella-photo-placeholder {
+            width: 80%;
+            height: 80%;
+            background: rgba(255,255,255,0.9);
+            border-radius: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 40px 100px rgba(255, 107, 157, 0.3);
-            overflow: hidden;
+            border: 3px dashed var(--primary-purple);
+            color: var(--deep-purple);
         }
 
-        .isabella-visual::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255,255,255,0.1) 10px,
-                rgba(255,255,255,0.1) 20px
-            );
-            animation: slide 20s linear infinite;
+        .isabella-photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--light-purple);
         }
 
-        .artist-portrait {
-            width: 250px;
-            height: 250px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 6rem;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            z-index: 10;
-            position: relative;
-            border: 8px solid rgba(255,255,255,0.3);
+        .isabella-photo-placeholder p {
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .art-badge {
-            position: absolute;
-            bottom: 80px;
-            background: white;
-            padding: 20px 40px;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            z-index: 10;
-            text-align: center;
-            transform: rotate(-3deg);
-        }
-
-        .art-badge .icon {
-            font-size: 2rem;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .art-badge p {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--deep-pink);
-            margin: 0;
-            font-weight: 600;
+        .isabella-photo-placeholder small {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 10px;
         }
 
         .isabella-content h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--text-dark);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
             line-height: 1.2;
         }
 
         .isabella-content .highlight {
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--deep-pink));
+            background: linear-gradient(135deg, var(--primary-purple), var(--deep-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .isabella-content p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-medium);
-            line-height: 2;
-            margin-bottom: 25px;
+            line-height: 1.9;
+            margin-bottom: 20px;
         }
 
-        .talent-list {
+        .isabella-stats {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
             margin-top: 40px;
         }
 
-        .talent-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 20px;
-            background: var(--light-pink);
-            border-radius: 15px;
+        .stat-item {
+            text-align: center;
+            padding: 25px;
+            background: var(--soft-lavender);
+            border-radius: 20px;
             transition: all 0.3s;
         }
 
-        .talent-item:hover {
-            transform: translateX(10px);
-            background: var(--soft-pink);
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: var(--light-purple);
         }
 
-        .talent-item .icon {
-            font-size: 2rem;
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--deep-purple);
+            display: block;
         }
 
-        .talent-item p {
-            margin: 0;
-            font-weight: 600;
-            color: var(--deep-pink);
-            font-size: 0.95rem;
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            margin-top: 5px;
         }
 
-        /* Services Section - Catering, Boba on Tap, etc. */
+        /* Services Grid */
         .services-section {
             background: linear-gradient(to bottom, var(--cream), white);
         }
@@ -672,66 +545,71 @@
 
         .service-card {
             background: white;
-            border-radius: 30px;
-            padding: 50px 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            transition: all 0.4s;
-            position: relative;
+            border-radius: 25px;
             overflow: hidden;
-            border: 2px solid transparent;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--dreamy-pink), var(--deep-pink));
+            box-shadow: 0 15px 50px rgba(0,0,0,0.08);
+            transition: all 0.4s;
         }
 
         .service-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.2);
-            border-color: var(--soft-pink);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 70px rgba(155, 89, 182, 0.15);
         }
 
-        .service-icon {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, var(--light-pink), var(--soft-pink));
-            border-radius: 50%;
+        .service-image {
+            height: 220px;
+            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3.5rem;
-            margin: 0 auto 30px;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
+            font-size: 4rem;
+            position: relative;
         }
 
-        .service-card h3 {
-            font-size: 1.8rem;
+        /* Placeholder for service photos */
+        .service-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.3);
+            border: 2px dashed var(--primary-purple);
+            color: var(--deep-purple);
+        }
+
+        .service-photo-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .service-photo-placeholder p {
+            font-size: 0.9rem;
+        }
+
+        .service-content {
+            padding: 35px;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
             color: var(--text-dark);
-            margin-bottom: 20px;
         }
 
-        .service-card p {
+        .service-content p {
             color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
+            line-height: 1.7;
+            margin-bottom: 20px;
         }
 
         .service-features {
             list-style: none;
-            text-align: left;
         }
 
         .service-features li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--light-pink);
+            padding: 8px 0;
             color: var(--text-medium);
             font-size: 0.95rem;
             display: flex;
@@ -741,289 +619,160 @@
 
         .service-features li::before {
             content: '✓';
-            color: var(--deep-pink);
+            color: var(--primary-purple);
             font-weight: bold;
         }
 
-        /* Awards Section */
-        .awards-section {
-            background: linear-gradient(135deg, var(--deep-pink), #C71585);
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .awards-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255,215,0,0.1) 0%, transparent 50%);
-        }
-
-        .awards-section .section-title {
-            color: white;
-        }
-
-        .awards-section .section-subtitle {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 10;
-        }
-
-        .award-item {
-            text-align: center;
-            padding: 40px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s;
-        }
-
-        .award-item:hover {
-            transform: scale(1.05);
-            background: rgba(255,255,255,0.15);
-        }
-
-        .award-icon {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .award-item h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--accent-gold);
-        }
-
-        .award-item p {
-            font-size: 0.9rem;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.6;
-        }
-
-        /* Menu Section - Visual Drink Cards */
+        /* Menu Section with Real Photo Placeholders */
         .menu-section {
             background: white;
         }
 
-        .menu-categories {
+        .menu-filter {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-bottom: 60px;
             flex-wrap: wrap;
         }
 
-        .category-btn {
-            padding: 15px 35px;
-            background: var(--light-pink);
-            border: none;
+        .filter-btn {
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid var(--light-purple);
             border-radius: 50px;
-            color: var(--deep-pink);
+            color: var(--deep-purple);
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 1rem;
         }
 
-        .category-btn.active, .category-btn:hover {
-            background: linear-gradient(135deg, var(--deep-pink), var(--dreamy-pink));
+        .filter-btn.active, .filter-btn:hover {
+            background: linear-gradient(135deg, var(--deep-purple), var(--primary-purple));
             color: white;
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.3);
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.3);
         }
 
         .menu-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        .drink-card {
+        .menu-item {
             background: white;
-            border-radius: 30px;
+            border-radius: 25px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
             transition: all 0.4s;
             position: relative;
-            border: 2px solid transparent;
         }
 
-        .drink-card:hover {
+        .menu-item:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 80px rgba(255, 107, 157, 0.25);
-            border-color: var(--soft-pink);
+            box-shadow: 0 25px 70px rgba(155, 89, 182, 0.2);
         }
 
-        .drink-visual {
+        .menu-image {
             height: 280px;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
         }
 
-        /* CSS Art for Each Drink */
-        .drink-visual.pina-colada {
-            background: linear-gradient(135deg, #FFF8DC, #FFE4B5);
-        }
-
-        .drink-visual.cupids-cup {
-            background: linear-gradient(135deg, #FFB6C1, #FFC0CB);
-        }
-
-        .drink-visual.chai {
-            background: linear-gradient(135deg, #D2B48C, #C4A484);
-        }
-
-        .drink-visual.milo {
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-        }
-
-        .drink-visual.thai {
-            background: linear-gradient(135deg, #FF8C00, #FFA500);
-        }
-
-        .drink-visual.taro {
-            background: linear-gradient(135deg, #DDA0DD, #E6E6FA);
-        }
-
-        .drink-visual.hibiscus {
-            background: linear-gradient(135deg, #DC143C, #FF69B4);
-        }
-
-        .drink-visual.matcha {
-            background: linear-gradient(135deg, #90EE90, #98FB98);
-        }
-
-        .drink-cup {
-            width: 120px;
-            height: 180px;
-            background: rgba(255,255,255,0.9);
-            border-radius: 10px 10px 40px 40px;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        /* Placeholder for drink photos - REPLACE THESE */
+        .drink-photo-placeholder {
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
-            padding-bottom: 20px;
-            font-size: 3rem;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--soft-lavender), var(--light-purple));
+            border: 3px dashed var(--primary-purple);
+            color: var(--deep-purple);
+            position: relative;
         }
 
-        .drink-cup::before {
-            content: '';
+        .drink-photo-placeholder i {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .drink-photo-placeholder p {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .drink-photo-placeholder small {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        /* When you add real photos, they will look like this: */
+        .menu-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .menu-item:hover .menu-image img {
+            transform: scale(1.1);
+        }
+
+        .menu-badge {
             position: absolute;
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 20px;
-            background: rgba(255,255,255,0.7);
-            border-radius: 50%;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-gold);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 10;
         }
 
-        .drink-cup::after {
-            content: '';
-            position: absolute;
-            top: 20%;
-            right: -30px;
-            width: 40px;
-            height: 60px;
-            border: 8px solid rgba(255,255,255,0.9);
-            border-radius: 0 20px 20px 0;
+        .menu-badge.new {
+            background: var(--deep-purple);
         }
 
-        .boba-pearls {
-            position: absolute;
-            bottom: 30px;
-            display: flex;
-            gap: 5px;
+        .menu-badge.isabella {
+            background: linear-gradient(135deg, var(--dreamy-pink), var(--primary-purple));
         }
 
-        .pearl {
-            width: 12px;
-            height: 12px;
-            background: #3D2817;
-            border-radius: 50%;
-            box-shadow: inset -2px -2px 4px rgba(0,0,0,0.3);
+        .menu-info {
+            padding: 30px;
         }
 
-        .drink-info {
-            padding: 35px;
-        }
-
-        .drink-header {
+        .menu-header {
             display: flex;
             justify-content: space-between;
-            align-items: start;
-            margin-bottom: 15px;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
-        .drink-header h3 {
-            font-size: 1.6rem;
-            color: var(--text-dark);
-            margin: 0;
-        }
-
-        .drink-price {
+        .menu-header h3 {
             font-size: 1.4rem;
-            color: var(--deep-pink);
+            color: var(--text-dark);
+        }
+
+        .menu-price {
+            font-size: 1.3rem;
+            color: var(--deep-purple);
             font-weight: 700;
         }
 
-        .drink-desc {
+        .menu-desc {
             color: var(--text-light);
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.7;
-            margin-bottom: 20px;
-        }
-
-        .drink-tags {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            padding: 6px 16px;
-            background: var(--light-pink);
-            color: var(--deep-pink);
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .tag.bestseller {
-            background: var(--accent-gold);
-            color: white;
-        }
-
-        .tag.new {
-            background: var(--deep-pink);
-            color: white;
-        }
-
-        .tag.isabella {
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--deep-pink));
-            color: white;
         }
 
         /* Gallery Section */
@@ -1031,42 +780,58 @@
             background: var(--cream);
         }
 
-        .gallery-mosaic {
+        .gallery-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 250px);
+            grid-auto-rows: 250px;
             gap: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .gallery-item {
-            border-radius: 25px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
+            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            font-size: 3rem;
             transition: all 0.4s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            z-index: 10;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
 
         .gallery-item.large {
             grid-column: span 2;
             grid-row: span 2;
-            font-size: 6rem;
         }
 
         .gallery-item.wide {
             grid-column: span 2;
+        }
+
+        /* Placeholder for gallery photos */
+        .gallery-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.4);
+            border: 2px dashed var(--primary-purple);
+            color: var(--deep-purple);
+        }
+
+        .gallery-photo-placeholder i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+
+        .gallery-photo-placeholder p {
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .gallery-overlay {
@@ -1074,10 +839,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 30px;
+            padding: 25px;
             background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
             color: white;
-            font-size: 1.2rem;
             font-weight: 600;
             opacity: 0;
             transition: opacity 0.3s;
@@ -1089,44 +853,30 @@
 
         /* Visit Section */
         .visit-section {
-            background: linear-gradient(135deg, var(--deep-pink), #C71585);
+            background: linear-gradient(135deg, var(--deep-purple), #6C3483);
             color: white;
-            position: relative;
-            overflow: hidden;
         }
 
-        .visit-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255,215,0,0.1) 0%, transparent 40%);
+        .visit-section .section-title {
+            color: white;
         }
 
-        .visit-content {
+        .visit-section .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .visit-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             max-width: 1200px;
             margin: 0 auto;
-            position: relative;
-            z-index: 10;
             align-items: center;
         }
 
-        .visit-info h2 {
-            font-size: 3.5rem;
-            margin-bottom: 40px;
-            color: white;
-        }
-
-        .visit-details {
+        .visit-info-card {
             background: rgba(255,255,255,0.1);
-            padding: 40px;
+            padding: 50px;
             border-radius: 30px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
@@ -1135,8 +885,8 @@
         .visit-item {
             display: flex;
             align-items: start;
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 35px;
         }
 
         .visit-item:last-child {
@@ -1144,19 +894,19 @@
         }
 
         .visit-icon {
-            font-size: 2rem;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: rgba(255,255,255,0.2);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
             flex-shrink: 0;
         }
 
         .visit-text h4 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             margin-bottom: 8px;
             color: var(--accent-gold);
         }
@@ -1167,196 +917,139 @@
             line-height: 1.6;
         }
 
-        .visit-map {
+        .visit-map-container {
+            height: 500px;
             background: white;
             border-radius: 30px;
-            height: 500px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 8rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .map-pin {
-            position: absolute;
-            animation: bounce 2s infinite;
+            font-size: 6rem;
         }
 
         /* Footer */
         footer {
             background: var(--text-dark);
             color: white;
-            padding: 80px 50px 40px;
+            padding: 70px 60px 40px;
             text-align: center;
-        }
-
-        .footer-content {
-            max-width: 1000px;
-            margin: 0 auto;
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--dreamy-pink), var(--soft-pink));
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, var(--light-purple), var(--soft-lavender));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .footer-tagline {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #aaa;
             margin-bottom: 40px;
             font-style: italic;
         }
 
-        .footer-features {
+        .footer-social {
             display: flex;
             justify-content: center;
-            gap: 50px;
-            margin-bottom: 50px;
-            flex-wrap: wrap;
-        }
-
-        .footer-feature {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #ddd;
-            font-size: 0.95rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
+            gap: 25px;
             margin-bottom: 50px;
         }
 
-        .social-links a {
-            width: 60px;
-            height: 60px;
+        .footer-social a {
+            width: 55px;
+            height: 55px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
-            border: 2px solid transparent;
         }
 
-        .social-links a:hover {
-            background: var(--deep-pink);
+        .footer-social a:hover {
+            background: var(--primary-purple);
             transform: translateY(-5px);
-            border-color: var(--soft-pink);
+        }
+
+        .footer-credit {
+            background: rgba(155, 89, 182, 0.2);
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 30px;
+            border: 1px solid rgba(155, 89, 182, 0.3);
+        }
+
+        .footer-credit p {
+            color: var(--light-purple);
+            font-style: italic;
+            margin: 0;
+            font-size: 0.95rem;
         }
 
         .copyright {
-            border-top: 1px solid #444;
-            padding-top: 40px;
             color: #777;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .dad-credit {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255,107,157,0.1);
-            border-radius: 15px;
-            border: 1px solid rgba(255,107,157,0.3);
-            display: inline-block;
-        }
-
-        .dad-credit p {
-            color: var(--soft-pink);
-            font-style: italic;
-            margin: 0;
-            font-size: 1rem;
+            font-size: 0.9rem;
+            border-top: 1px solid #444;
+            padding-top: 30px;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 4rem; }
-            .isabella-grid { grid-template-columns: 1fr; }
-            .isabella-visual { height: 400px; }
+            .isabella-grid { grid-template-columns: 1fr; gap: 60px; }
+            .isabella-image-container { height: 400px; }
             .services-grid { grid-template-columns: 1fr; }
-            .awards-grid { grid-template-columns: repeat(2, 1fr); }
-            .visit-content { grid-template-columns: 1fr; }
-            .gallery-mosaic { grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(6, 200px); }
+            .visit-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; }
             .gallery-item.large { grid-column: span 2; grid-row: span 2; }
         }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.2rem; }
+            nav { padding: 15px 30px; }
             .nav-links { display: none; }
             .hero-buttons { flex-direction: column; align-items: center; }
-            .btn-primary, .btn-secondary { width: 100%; max-width: 300px; justify-content: center; }
+            .btn-primary, .btn-secondary { width: 100%; max-width: 280px; justify-content: center; }
+            .isabella-stats { grid-template-columns: 1fr; }
             .menu-grid { grid-template-columns: 1fr; }
-            .gallery-mosaic { grid-template-columns: 1fr; grid-template-rows: repeat(12, 200px); }
+            .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 250px; }
             .gallery-item.large, .gallery-item.wide { grid-column: span 1; grid-row: span 1; }
-            .talent-list { grid-template-columns: 1fr; }
-            .letter-container { padding: 0 20px; }
-            .envelope { padding: 40px 30px; }
+            .dad-container { padding: 30px; }
+            section { padding: 70px 30px; }
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s ease-out;
-        }
+        /* Animation Classes */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+        
+        .slide-left { opacity: 0; transform: translateX(-60px); transition: all 0.8s ease-out; }
+        .slide-left.visible { opacity: 1; transform: translateX(0); }
+        
+        .slide-right { opacity: 0; transform: translateX(60px); transition: all 0.8s ease-out; }
+        .slide-right.visible { opacity: 1; transform: translateX(0); }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .slide-in-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 0.8s ease-out;
-        }
-
-        .slide-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .slide-in-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 0.8s ease-out;
-        }
-
-        .slide-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.8s ease-out;
-        }
-
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
+        .scale-in { opacity: 0; transform: scale(0.8); transition: all 0.8s ease-out; }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
     </style>
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="boba-rain" id="bobaRain"></div>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-boba">🧋</div>
+            <p>Loading DreamyTea...</p>
+        </div>
+    </div>
 
     <!-- Navigation -->
     <nav>
@@ -1365,7 +1058,6 @@
             <li><a href="#isabella">Meet Isabella</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#awards">Awards</a></li>
             <li><a href="#gallery">Gallery</a></li>
             <li><a href="#visit" class="nav-cta">Visit Us</a></li>
         </ul>
@@ -1373,80 +1065,68 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-visuals">
-            <div class="floating-drink">🧋</div>
-            <div class="floating-drink">🍓</div>
-            <div class="floating-drink">🥭</div>
-            <div class="floating-drink">🧋</div>
+        <div class="hero-bg"></div>
+        <div class="floating-elements">
+            <div class="float-item">🧋</div>
+            <div class="float-item">🌸</div>
+            <div class="float-item">✨</div>
+            <div class="float-item">💜</div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge">✨ Orlando's Most Aesthetic Boba Shop ✨</div>
+            <div class="hero-badge">
+                <i class="fas fa-star"></i> Orlando's Most Aesthetic Boba Shop
+            </div>
             <h1>DreamyTea</h1>
             <p class="hero-subtitle">Winter Garden, Orlando</p>
             <p class="hero-tagline">"Where Every Sip is a Dream Come True"</p>
             <div class="hero-isabella">🎨 Crafted with love by Isabella Betz 🎨</div>
             <div class="hero-buttons">
-                <a href="#menu" class="btn-primary">Explore Menu 🧋</a>
-                <a href="#services" class="btn-secondary">Our Services ✨</a>
+                <a href="#menu" class="btn-primary">Explore Menu <i class="fas fa-arrow-right"></i></a>
+                <a href="#services" class="btn-secondary">Our Services</a>
             </div>
         </div>
     </section>
 
-    <!-- Dad's Letter Section -->
-    <section class="dad-section" id="letter">
-        <div class="letter-container">
-            <div class="envelope fade-in">
-                <div class="wax-seal">❤️</div>
-                <div class="letter-content">
-                    <h2>A Father's Love Letter</h2>
-                    <div class="letter-body">
-                        <p>My dearest Isabella,</p>
-                        <p>Watching you pour your heart, creativity, and soul into DreamyTea fills me with a pride I never knew was possible. From your beautiful hand-drawn menu illustrations to your innovative chai creations, you've transformed this shop into something truly magical.</p>
-                        <p>Your aunts may hold the title, but you, my daughter, are the beating heart of this dream. Your expertise from working at boba shops across Orlando, your artistic vision that brought the menu to life, and your dedication to making every customer's experience special—these are the things that make DreamyTea shine brighter than any other shop in Florida.</p>
-                        <p>This website is my gift to you, a small token of my infinite love and admiration. I see how hard you work, how much you care, and how brightly you shine. You are not just running a shop; you are creating joy, one cup at a time.</p>
-                        <p>Keep dreaming, keep creating, and never forget how incredibly proud I am to be your dad.</p>
-                    </div>
-                    <div class="letter-signature">Dad</div>
-                </div>
-            </div>
+    <!-- Subtle Dad Letter -->
+    <section class="dad-section">
+        <div class="dad-container fade-in">
+            <h3>A Note from Dad</h3>
+            <p>Isabella, watching you bring DreamyTea to life with your artistry and dedication fills me with immense pride. This shop is a reflection of your creativity and heart. Keep dreaming big. — Dad</p>
         </div>
     </section>
 
-    <!-- Isabella Spotlight -->
+    <!-- Isabella Section -->
     <section class="isabella-section" id="isabella">
         <div class="section-header">
             <span class="section-label">The Creative Force</span>
             <h2 class="section-title">Meet Isabella Betz</h2>
-            <p class="section-subtitle">The artistic soul and operational heart behind DreamyTea's magic</p>
+            <p class="section-subtitle">Artist, innovator, and the heart behind DreamyTea's magic</p>
         </div>
         <div class="isabella-grid">
-            <div class="isabella-visual slide-in-left">
-                <div class="artist-portrait">👩‍🎨</div>
-                <div class="art-badge">
-                    <span class="icon">🎨</span>
-                    <p>Hand-Drawn Menu Artist</p>
+            <div class="isabella-image-container slide-left">
+                <!-- REPLACE THIS PLACEHOLDER WITH ISABELLA'S ANIME-STYLE PHOTO -->
+                <div class="isabella-photo-placeholder">
+                    <i class="fas fa-user-circle"></i>
+                    <p>Isabella's Photo</p>
+                    <small>Add anime-style portrait here<br>Recommended: 500x600px</small>
                 </div>
             </div>
-            <div class="isabella-content slide-in-right">
+            <div class="isabella-content slide-right">
                 <h2>Where Art Meets <span class="highlight">Boba Magic</span></h2>
                 <p>While DreamyTea was founded by twin sisters Cristina Dewrell and Andrea Perlas, the shop's vibrant soul comes from their niece, <strong>Isabella Betz</strong>. With years of experience working at boba shops across Orlando, Isabella brought invaluable expertise in what customers love.</p>
                 <p>She personally hand-drew every illustration on the menu, helped craft the perfect offerings, and manages the shop's social media presence. Her recent addition of chai to the menu has already become a customer favorite.</p>
-                <div class="talent-list">
-                    <div class="talent-item">
-                        <span class="icon">🎨</span>
-                        <p>Menu Illustrator</p>
+                <div class="isabella-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Hand-Drawn Art</span>
                     </div>
-                    <div class="talent-item">
-                        <span class="icon">📱</span>
-                        <p>Social Media Manager</p>
+                    <div class="stat-item">
+                        <span class="stat-number">5⭐</span>
+                        <span class="stat-label">Customer Rating</span>
                     </div>
-                    <div class="talent-item">
-                        <span class="icon">☕</span>
-                        <p>Chai Innovator</p>
-                    </div>
-                    <div class="talent-item">
-                        <span class="icon">🧋</span>
-                        <p>Boba Expert</p>
+                    <div class="stat-item">
+                        <span class="stat-number">2024</span>
+                        <span class="stat-label">Year Founded</span>
                     </div>
                 </div>
             </div>
@@ -1462,71 +1142,61 @@
         </div>
         <div class="services-grid">
             <div class="service-card scale-in">
-                <div class="service-icon">🎉</div>
-                <h3>Catering Services</h3>
-                <p>Bring the DreamyTea experience to your special events, parties, and celebrations.</p>
-                <ul class="service-features">
-                    <li>Birthday Parties</li>
-                    <li>Corporate Events</li>
-                    <li>Wedding Receptions</li>
-                    <li>Private Functions</li>
-                    <li>Custom Drink Menus</li>
-                </ul>
+                <div class="service-image">
+                    <!-- REPLACE WITH CATERING PHOTO -->
+                    <div class="service-photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Catering Photo</p>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Catering Services</h3>
+                    <p>Bring the DreamyTea experience to your special events, parties, and celebrations with custom drink menus.</p>
+                    <ul class="service-features">
+                        <li>Birthday Parties & Events</li>
+                        <li>Corporate Functions</li>
+                        <li>Wedding Receptions</li>
+                        <li>Custom Drink Menus</li>
+                    </ul>
+                </div>
             </div>
             <div class="service-card scale-in">
-                <div class="service-icon">🚰</div>
-                <h3>Boba on Tap</h3>
-                <p>Revolutionary self-serve boba station for events and permanent installations.</p>
-                <ul class="service-features">
-                    <li>Self-Serve Stations</li>
-                    <li>Multiple Flavor Options</li>
-                    <li>Custom Branding</li>
-                    <li>Full Setup & Support</li>
-                    <li>Perfect for Offices</li>
-                </ul>
+                <div class="service-image">
+                    <!-- REPLACE WITH BOBA ON TAP PHOTO -->
+                    <div class="service-photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Boba on Tap Photo</p>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Boba on Tap</h3>
+                    <p>Revolutionary self-serve boba station perfect for offices, events, and permanent installations.</p>
+                    <ul class="service-features">
+                        <li>Self-Serve Stations</li>
+                        <li>Multiple Flavor Options</li>
+                        <li>Custom Branding Available</li>
+                        <li>Full Setup & Support</li>
+                    </ul>
+                </div>
             </div>
             <div class="service-card scale-in">
-                <div class="service-icon">🎁</div>
-                <h3>Hello Kitty Shop</h3>
-                <p>Exclusive gift shop featuring curated Hello Kitty merchandise and surprises.</p>
-                <ul class="service-features">
-                    <li>Exclusive Merchandise</li>
-                    <li>Limited Edition Items</li>
-                    <li>Gift Wrapping</li>
-                    <li>Special Collections</li>
-                    <li>Perfect for Gifts</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section class="awards-section" id="awards">
-        <div class="section-header">
-            <span class="section-label" style="background: rgba(255,255,255,0.2); color: white;">Recognition</span>
-            <h2 class="section-title">Awards & Recognition</h2>
-            <p class="section-subtitle">Celebrated as one of Orlando's premier boba destinations</p>
-        </div>
-        <div class="awards-grid">
-            <div class="award-item fade-in">
-                <span class="award-icon">🏆</span>
-                <h4>Best Aesthetic</h4>
-                <p>Recognized among Orlando's most Instagram-worthy boba shops</p>
-            </div>
-            <div class="award-item fade-in">
-                <span class="award-icon">⭐</span>
-                <h4>Top Rated</h4>
-                <p>5-star reviews across Google, Yelp, and social media</p>
-            </div>
-            <div class="award-item fade-in">
-                <span class="award-icon">🎨</span>
-                <h4>Best Menu Design</h4>
-                <p>Hand-drawn artistic menu by Isabella Betz</p>
-            </div>
-            <div class="award-item fade-in">
-                <span class="award-icon">🧋</span>
-                <h4>Secret Menu Fame</h4>
-                <p>Viral TikTok recognition for exclusive off-menu items</p>
+                <div class="service-image">
+                    <!-- REPLACE WITH HELLO KITTY SHOP PHOTO -->
+                    <div class="service-photo-placeholder">
+                        <i class="fas fa-camera"></i>
+                        <p>Hello Kitty Shop Photo</p>
+                    </div>
+                </div>
+                <div class="service-content">
+                    <h3>Hello Kitty Shop</h3>
+                    <p>Exclusive gift shop featuring curated Hello Kitty merchandise, limited editions, and perfect gifts.</p>
+                    <ul class="service-features">
+                        <li>Exclusive Merchandise</li>
+                        <li>Limited Edition Items</li>
+                        <li>Gift Wrapping Services</li>
+                        <li>Special Collections</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </section>
@@ -1538,189 +1208,122 @@
             <h2 class="section-title">Isabella's Menu</h2>
             <p class="section-subtitle">Each drink crafted with artistic precision and love</p>
         </div>
-        <div class="menu-categories">
-            <button class="category-btn active">All Drinks</button>
-            <button class="category-btn">Milk Teas</button>
-            <button class="category-btn">Fruit Teas</button>
-            <button class="category-btn">Specialty</button>
+        <div class="menu-filter">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Milk Teas</button>
+            <button class="filter-btn">Fruit Teas</button>
+            <button class="filter-btn">Specialty</button>
         </div>
         <div class="menu-grid">
-            <div class="drink-card fade-in">
-                <div class="drink-visual pina-colada">
-                    <div class="drink-cup">🥥🥭
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 1: Pina Colada -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <!-- REPLACE WITH REAL DRINK PHOTO -->
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FFF8DC, #FFE4B5);">
+                        <i class="fas fa-image"></i>
+                        <p>Pina Colada Dream</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
+                    <span class="menu-badge">Bestseller</span>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>Pina Colada Dream</h3>
-                        <span class="drink-price">$7.50</span>
+                        <span class="menu-price">$7.50</span>
                     </div>
-                    <p class="drink-desc">Our signature tropical escape featuring refreshing pina colada slush paired with sweet mango boba pearls. A vacation in every sip.</p>
-                    <div class="drink-tags">
-                        <span class="tag bestseller">Bestseller</span>
-                        <span class="tag isabella">Isabella's Pick</span>
-                    </div>
+                    <p class="menu-desc">Tropical pina colada slush with sweet mango boba pearls. Isabella's favorite creation.</p>
                 </div>
             </div>
 
-            <div class="drink-card fade-in">
-                <div class="drink-visual cupids-cup">
-                    <div class="drink-cup">🍓
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 2: Cupid's Cup -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FFB6C1, #FFC0CB);">
+                        <i class="fas fa-image"></i>
+                        <p>Cupid's Cup</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>Cupid's Cup</h3>
-                        <span class="drink-price">$6.50</span>
+                        <span class="menu-price">$6.50</span>
                     </div>
-                    <p class="drink-desc">Strawberry milk blended with fresh strawberry puree. Sweet, creamy, and made with love.</p>
-                    <div class="drink-tags">
-                        <span class="tag">Sweet</span>
-                        <span class="tag">Creamy</span>
-                    </div>
+                    <p class="menu-desc">Strawberry milk blended with fresh strawberry puree. Sweet, creamy, and made with love.</p>
                 </div>
             </div>
 
-            <div class="drink-card fade-in">
-                <div class="drink-visual chai">
-                    <div class="drink-cup">☕
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 3: Isabella's Chai -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #D2B48C, #C4A484);">
+                        <i class="fas fa-image"></i>
+                        <p>Isabella's Chai</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
+                    <span class="menu-badge new">NEW</span>
+                    <span class="menu-badge isabella" style="top: 60px;">Isabella's</span>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>Isabella's Chai</h3>
-                        <span class="drink-price">$6.00</span>
+                        <span class="menu-price">$6.00</span>
                     </div>
-                    <p class="drink-desc">Recently added to the menu by Isabella herself—warm, spiced, and perfectly comforting. A new favorite born from her creativity.</p>
-                    <div class="drink-tags">
-                        <span class="tag new">NEW</span>
-                        <span class="tag isabella">Isabella's Innovation</span>
-                    </div>
+                    <p class="menu-desc">Recently added by Isabella herself—warm, spiced, and perfectly comforting.</p>
                 </div>
             </div>
 
-            <div class="drink-card fade-in">
-                <div class="drink-visual milo">
-                    <div class="drink-cup">🍫
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 4: Milo Dinosaur -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #8B4513, #A0522D);">
+                        <i class="fas fa-image"></i>
+                        <p>Milo Dinosaur</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>Milo Dinosaur</h3>
-                        <span class="drink-price">$6.50</span>
+                        <span class="menu-price">$6.50</span>
                     </div>
-                    <p class="drink-desc">Chocolate milk elevated with Milo powder — a nostalgic favorite with a dreamy twist.</p>
-                    <div class="drink-tags">
-                        <span class="tag">Secret Menu</span>
-                    </div>
+                    <p class="menu-desc">Chocolate milk elevated with Milo powder—a nostalgic favorite with a dreamy twist.</p>
                 </div>
             </div>
 
-            <div class="drink-card fade-in">
-                <div class="drink-visual thai">
-                    <div class="drink-cup">🧋
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 5: Thai Tea -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #FF8C00, #FFA500);">
+                        <i class="fas fa-image"></i>
+                        <p>My Thai</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>My Thai</h3>
-                        <span class="drink-price">$6.00</span>
+                        <span class="menu-price">$6.00</span>
                     </div>
-                    <p class="drink-desc">Authentic Thai tea with condensed milk — rich, creamy, and perfectly balanced.</p>
-                    <div class="drink-tags">
-                        <span class="tag">Classic</span>
-                    </div>
+                    <p class="menu-desc">Authentic Thai tea with condensed milk—rich, creamy, and perfectly balanced.</p>
                 </div>
             </div>
 
-            <div class="drink-card fade-in">
-                <div class="drink-visual taro">
-                    <div class="drink-cup">🍠
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
+            <!-- Drink 6: Taro -->
+            <div class="menu-item fade-in">
+                <div class="menu-image">
+                    <div class="drink-photo-placeholder" style="background: linear-gradient(135deg, #DDA0DD, #E6E6FA);">
+                        <i class="fas fa-image"></i>
+                        <p>Heavenly Taro</p>
+                        <small>Add photo: 600x400px</small>
                     </div>
                 </div>
-                <div class="drink-info">
-                    <div class="drink-header">
+                <div class="menu-info">
+                    <div class="menu-header">
                         <h3>Heavenly Taro</h3>
-                        <span class="drink-price">$6.50</span>
+                        <span class="menu-price">$6.50</span>
                     </div>
-                    <p class="drink-desc">Creamy taro milk tea with a hint of vanilla — smooth, dreamy, and utterly divine.</p>
-                    <div class="drink-tags">
-                        <span class="tag">Popular</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="drink-card fade-in">
-                <div class="drink-visual hibiscus">
-                    <div class="drink-cup">🌺
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="drink-info">
-                    <div class="drink-header">
-                        <h3>Hibiscus Raspberry</h3>
-                        <span class="drink-price">$6.00</span>
-                    </div>
-                    <p class="drink-desc">Black tea infused with hibiscus and raspberry — floral, fruity, and beautifully pink.</p>
-                    <div class="drink-tags">
-                        <span class="tag">Refreshing</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="drink-card fade-in">
-                <div class="drink-visual matcha">
-                    <div class="drink-cup">🍵
-                        <div class="boba-pearls">
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                            <div class="pearl"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="drink-info">
-                    <div class="drink-header">
-                        <h3>Strawberry Matcha</h3>
-                        <span class="drink-price">$6.50</span>
-                    </div>
-                    <p class="drink-desc">Premium matcha layered with fresh strawberry milk — an Instagram-worthy masterpiece.</p>
-                    <div class="drink-tags">
-                        <span class="tag bestseller">Trending</span>
-                    </div>
+                    <p class="menu-desc">Creamy taro milk tea with vanilla—smooth, dreamy, and utterly divine.</p>
                 </div>
             </div>
         </div>
@@ -1733,138 +1336,135 @@
             <h2 class="section-title">Photo Gallery</h2>
             <p class="section-subtitle">Capturing the magic of DreamyTea</p>
         </div>
-        <div class="gallery-mosaic">
+        <div class="gallery-grid">
             <div class="gallery-item large fade-in">
-                🧋
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Shop Interior</p>
+                </div>
+                <div class="gallery-overlay">Aesthetic Pink Paradise</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Drink Close-up</p>
+                </div>
                 <div class="gallery-overlay">Signature Drinks</div>
             </div>
             <div class="gallery-item fade-in">
-                🎀
-                <div class="gallery-overlay">Hello Kitty Shop</div>
-            </div>
-            <div class="gallery-item fade-in">
-                🧇
-                <div class="gallery-overlay">Croffles & Snacks</div>
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Hello Kitty</p>
+                </div>
+                <div class="gallery-overlay">Merchandise</div>
             </div>
             <div class="gallery-item wide fade-in">
-                💕
-                <div class="gallery-overlay">Aesthetic Vibes</div>
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Event/Catering</p>
+                </div>
+                <div class="gallery-overlay">Catering Events</div>
             </div>
             <div class="gallery-item fade-in">
-                🌸
-                <div class="gallery-overlay">Pink Paradise</div>
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Isabella Art</p>
+                </div>
+                <div class="gallery-overlay">Hand-Drawn Menu</div>
             </div>
             <div class="gallery-item fade-in">
-                ✨
-                <div class="gallery-overlay">Dreamy Decor</div>
+                <div class="gallery-photo-placeholder">
+                    <i class="fas fa-images"></i>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="gallery-overlay">Customer Moments</div>
             </div>
         </div>
     </section>
 
     <!-- Visit Section -->
     <section class="visit-section" id="visit">
-        <div class="visit-content">
-            <div class="visit-info slide-in-left">
-                <h2>Visit the Dream</h2>
-                <div class="visit-details">
-                    <div class="visit-item">
-                        <div class="visit-icon">📍</div>
-                        <div class="visit-text">
-                            <h4>Location</h4>
-                            <p>12623 W Colonial Dr, Ste B<br>Winter Garden, FL 34787</p>
-                        </div>
-                    </div>
-                    <div class="visit-item">
-                        <div class="visit-icon">📞</div>
-                        <div class="visit-text">
-                            <h4>Phone</h4>
-                            <p>(407) 347-0051</p>
-                        </div>
-                    </div>
-                    <div class="visit-item">
-                        <div class="visit-icon">🕐</div>
-                        <div class="visit-text">
-                            <h4>Hours</h4>
-                            <p>Monday - Sunday<br>12:00 PM - 8:00 PM</p>
-                        </div>
+        <div class="section-header">
+            <span class="section-label" style="background: rgba(255,255,255,0.2); color: white;">Find Us</span>
+            <h2 class="section-title">Visit the Dream</h2>
+            <p class="section-subtitle">Come experience the magic in person</p>
+        </div>
+        <div class="visit-grid">
+            <div class="visit-info-card slide-left">
+                <div class="visit-item">
+                    <div class="visit-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="visit-text">
+                        <h4>Location</h4>
+                        <p>12623 W Colonial Dr, Ste B<br>Winter Garden, FL 34787</p>
                     </div>
                 </div>
-                <a href="tel:4073470051" class="btn-primary" style="margin-top: 30px;">Call to Order 📞</a>
+                <div class="visit-item">
+                    <div class="visit-icon"><i class="fas fa-phone"></i></div>
+                    <div class="visit-text">
+                        <h4>Phone</h4>
+                        <p>(407) 347-0051</p>
+                    </div>
+                </div>
+                <div class="visit-item">
+                    <div class="visit-icon"><i class="fas fa-clock"></i></div>
+                    <div class="visit-text">
+                        <h4>Hours</h4>
+                        <p>Monday - Sunday<br>12:00 PM - 8:00 PM</p>
+                    </div>
+                </div>
+                <a href="tel:4073470051" class="btn-primary" style="margin-top: 20px; display: inline-flex;">
+                    <i class="fas fa-phone"></i> Call to Order
+                </a>
             </div>
-            <div class="visit-map slide-in-right">
-                <div class="map-pin">📍</div>
+            <div class="visit-map-container slide-right">
+                <i class="fas fa-map-marked-alt"></i>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">DreamyTea</div>
-            <p class="footer-tagline">"Arguably the best place for boba in Florida"</p>
-            <div class="footer-features">
-                <div class="footer-feature">🎨 Hand-Drawn Menu Art</div>
-                <div class="footer-feature">📸 Instagram-Worthy Aesthetic</div>
-                <div class="footer-feature">🧋 Premium Boba Quality</div>
-                <div class="footer-feature">🎀 Hello Kitty Shop</div>
-            </div>
-            <div class="social-links">
-                <a href="#">📸</a>
-                <a href="#">📘</a>
-                <a href="#">🎵</a>
-                <a href="#">🐦</a>
-            </div>
-            <div class="copyright">
-                <p>Made with 💕 by Dad for Isabella | © 2024 DreamyTea. All dreams reserved.</p>
-                <div class="dad-credit">
-                    <p>🎨 Menu Artwork & Social Media by Isabella Betz | ☕ Chai Innovation by Isabella</p>
-                </div>
-                <p style="margin-top: 20px; font-size: 0.9rem;">A Family Dream Built with Love in Winter Garden, Orlando</p>
-            </div>
+        <div class="footer-logo">DreamyTea</div>
+        <p class="footer-tagline">"Arguably the best place for boba in Florida"</p>
+        <div class="footer-social">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="footer-credit">
+            <p>🎨 Menu Artwork & Social Media by Isabella Betz | Made with 💜 by Dad</p>
+        </div>
+        <div class="copyright">
+            <p>© 2024 DreamyTea. All dreams reserved. | Winter Garden, Orlando</p>
         </div>
     </footer>
 
     <script>
-        // Create falling boba animation
-        function createFallingBoba() {
-            const container = document.getElementById('bobaRain');
-            const bobaCount = 20;
-            
-            for (let i = 0; i < bobaCount; i++) {
-                const boba = document.createElement('div');
-                boba.className = 'falling-boba';
-                
-                const size = Math.random() * 25 + 15;
-                boba.style.width = `${size}px`;
-                boba.style.height = `${size}px`;
-                boba.style.left = `${Math.random() * 100}%`;
-                boba.style.animationDuration = `${Math.random() * 10 + 10}s`;
-                boba.style.animationDelay = `${Math.random() * 5}s`;
-                boba.style.opacity = Math.random() * 0.5 + 0.2;
-                
-                container.appendChild(boba);
-            }
-        }
+        // Preloader
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1000);
+        });
 
         // Intersection Observer for animations
-        function initScrollAnimations() {
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
-                observer.observe(el);
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
             });
-        }
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in').forEach(el => {
+            observer.observe(el);
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1877,27 +1477,20 @@
             });
         });
 
-        // Category buttons
-        document.querySelectorAll('.category-btn').forEach(btn => {
+        // Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {
-                document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             });
         });
 
-        // Initialize
-        window.addEventListener('load', () => {
-            createFallingBoba();
-            initScrollAnimations();
-        });
-
-        // Parallax effect
+        // Parallax on scroll
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.floating-drink');
-            parallaxElements.forEach((el, index) => {
+            document.querySelectorAll('.float-item').forEach((el, index) => {
                 const speed = 0.5 + (index * 0.1);
-                el.style.transform = `translateY(${scrolled * speed}px)`;
+                el.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.1}deg)`;
             });
         });
     </script>
